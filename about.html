@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1a2b" media="(prefers-color-scheme: dark)" />
+    <title>ZagranEasy Travel | О нас — Кураторы премиальных путешествий</title>
+    <meta name="description" content="ZagranEasy Travel — кураторы премиальных путешествий по Казахстану. Узнайте о нашей миссии, ценностях, команде и стремлении к аутентичным культурным впечатлениям." />
+    <link rel="canonical" href="https://zagrantours.com/about.html" />
+    <meta property="og:title" content="ZagranEasy Travel — О нас" />
+    <meta property="og:description" content="История ZagranEasy Travel — кураторов премиальных путешествий в Казахстане." />
+    <meta property="og:type" content="website" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "О ZagranEasy Travel",
+        "description": "Кураторы премиальных путешествий в Казахстане. Миссия, ценности и команда.",
+        "url": "https://zagrantours.com/about.html",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "ZagranEasy Travel",
+            "description": "Премиальные экспедиции в Казахстане.",
+            "foundingDate": "2024",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Алматы",
+                "addressCountry": "KZ"
+            },
+            "telephone": "+7 727 123 4567",
+            "email": "info@zagrantours.com"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* ===== УНИКАЛЬНЫЕ СТИЛИ about.html ===== */
+
+        body { background: #ffffff; }
+        html.dark body { background: #0f1a2b; }
+
+        /* ===== МИССИЯ ===== */
+        .mission-section { padding: var(--section-spacing) 0; }
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .mission-image {
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+        }
+        .mission-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s var(--ease-smooth);
+        }
+        .mission-image:hover img { transform: scale(1.04); }
+        .mission-content .section-tag { margin-bottom: 16px; }
+        .mission-content h2 { margin-bottom: 20px; }
+        .mission-content p {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            color: var(--text-variant);
+        }
+        .mission-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 28px 0;
+        }
+        .mission-value {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--text-strong);
+        }
+        .mission-value .material-symbols-outlined {
+            color: var(--primary-container);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .mission-content .btn { margin-top: 8px; }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 1024px) {
+            .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+            .mission-image img { height: 340px; }
+        }
+        @media (max-width: 480px) {
+            .mission-values { grid-template-columns: 1fr; }
+            .mission-image img { height: 240px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar" role="banner">
+        <div class="navbar-inner">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" />
+            </a>
+            <nav class="nav-links" role="menubar">
+                <a href="index.html" class="nav-link" role="menuitem" data-en="Home" data-ru="Главная">Главная</a>
+                <a href="hotels.html" class="nav-link" role="menuitem" data-en="Hotels" data-ru="Отели">Отели</a>
+                <a href="routes.html" class="nav-link" role="menuitem" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                <a href="attractions.html" class="nav-link" role="menuitem" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                <a href="about.html" class="nav-link active" role="menuitem" data-en="About" data-ru="О нас">О нас</a>
+                <button class="nav-link nav-cta" onclick="openModal()" role="menuitem" data-en="Get in Touch" data-ru="Связаться">Связаться</button>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')" aria-label="Переключить на русский">RU</button>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+        <div class="mobile-menu-inner">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo">
+                    <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" style="height: 36px; width: auto;" />
+                </a>
+                <button class="mobile-close" id="mobileClose" aria-label="Close menu">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="mobile-menu-links">
+                <a href="index.html" class="mobile-link" data-en="Home" data-ru="Главная">Главная</a>
+                <a href="hotels.html" class="mobile-link" data-en="Hotels" data-ru="Отели">Отели</a>
+                <a href="routes.html" class="mobile-link" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                <a href="attractions.html" class="mobile-link" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                <a href="about.html" class="mobile-link active" data-en="About" data-ru="О нас">О нас</a>
+                <button class="mobile-link mobile-cta" onclick="openModal(); toggleMenu();" data-en="Get in Touch" data-ru="Связаться">Связаться</button>
+            </nav>
+            <div class="mobile-menu-footer">
+                <p class="mobile-contact">info@zagrantours.com</p>
+                <p class="mobile-contact">+7 727 123 4567</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 data-en="Get in Touch" data-ru="Свяжитесь с нами">Свяжитесь с нами</h2>
+            <p data-en="Fill in the details and our team will help you plan your perfect journey." data-ru="Заполните данные, и наша команда поможет спланировать ваше идеальное путешествие.">
+                Заполните данные, и наша команда поможет спланировать ваше идеальное путешествие.
+            </p>
+            <form id="requestForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="guestName" data-en="Full Name" data-ru="Ваше имя">Ваше имя</label>
+                    <input type="text" id="guestName" placeholder="Как вас зовут?" autocomplete="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="guestPhone" data-en="Phone Number" data-ru="Номер телефона">Номер телефона</label>
+                    <input type="tel" id="guestPhone" placeholder="+7 777 123 4567" autocomplete="tel" inputmode="tel" required />
+                </div>
+                <div class="form-group">
+                    <label for="guestDate" data-en="Preferred Travel Date" data-ru="Дата путешествия">Дата путешествия</label>
+                    <input type="date" id="guestDate" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit" data-en="Send Request" data-ru="Отправить заявку">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <video src="https://res.cloudinary.com/rmytndxw/video/upload/v1786645001/index.mp4" autoplay muted playsinline webkit-playsinline preload="metadata" poster="" class="hero-video" id="heroVideo"></video>
+        </div>
+
+        <div class="container hero-content">
+            <span class="hero-badge" data-en="Our Story" data-ru="Наша история">Наша история</span>
+            <h1 class="hero-title">
+                <span class="hero-title-line" data-en="Bridging Global Explorers" data-ru="Соединяем путешественников">Соединяем путешественников</span>
+                <span class="hero-title-line"><span class="text-gradient" data-en="to Kazakh Hospitality" data-ru="с казахским гостеприимством">с казахским гостеприимством</span></span>
+            </h1>
+            <p class="hero-subtitle" data-en="ZagranEasy Travel creates unique experiences, blending high aesthetics with seamless travel planning" data-ru="ZagranEasy Travel создаёт уникальные впечатления, сочетая высокую эстетику с бесшовным планированием">
+                ZagranEasy Travel создаёт уникальные впечатления, сочетая высокую эстетику с бесшовным планированием.
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="document.getElementById('mission').scrollIntoView({ behavior: 'smooth' });">
+                    <span data-en="Our Mission" data-ru="Наша миссия">Наша миссия</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <button class="btn btn-secondary btn-plan-trip" onclick="openModal()" data-en="Get in Touch" data-ru="Связаться">Связаться</button>
+                <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="btn-whatsapp">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span data-en="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="mission-section container" id="mission" style="scroll-margin-top: 100px;">
+        <div class="mission-grid">
+            <div class="mission-content">
+                <span class="section-tag" data-en="Our Mission" data-ru="Наша миссия">Наша миссия</span>
+                <h2 class="section-title" data-en="Redefining Travel in" data-ru="Переосмысляя путешествия в">
+                    Переосмысляя путешествия в <span class="text-gradient" data-en="Central Asia" data-ru="Центральной Азии">Центральной Азии</span>
+                </h2>
+                <p data-en="ZagranEasy Travel was born from a simple idea: to create journeys that blend high-end hospitality with the authenticity of Central Asian culture. Travel is not just comfort — it's transformation and discovery" data-ru="ZagranEasy Travel родился из простой идеи: создавать путешествия, которые сочетают высококлассное гостеприимство и подлинность культуры Центральной Азии. Путешествие — это не просто комфорт, это трансформация и открытия">
+                    ZagranEasy Travel родился из простой идеи: создавать путешествия, которые сочетают высококлассное гостеприимство и подлинность культуры Центральной Азии. Путешествие — это не просто комфорт, это трансформация и открытия.
+                </p>
+                <div class="mission-values">
+                    <div class="mission-value">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span data-en="100% Tailored Itineraries" data-ru="100% Индивидуальные маршруты">100% Индивидуальные маршруты</span>
+                    </div>
+                    <div class="mission-value">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span data-en="Premium Partners" data-ru="Премиальные партнёры">Премиальные партнёры</span>
+                    </div>
+                    <div class="mission-value">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span data-en="24/7 Concierge" data-ru="Круглосуточная поддержка">Круглосуточная поддержка</span>
+                    </div>
+                    <div class="mission-value">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        <span data-en="Expert Planning" data-ru="Профессиональное планирование">Профессиональное планирование</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span data-en="Get in Touch" data-ru="Связаться">Связаться</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+            <div class="mission-image tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kolsai_Kaindy_Lakes_qubkus.jpg" alt="Кольсайские озёра, Казахстан" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section container" id="stats" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Our Impact" data-ru="Наше влияние">Наше влияние</span>
+            <h2 class="section-title" data-en="By the" data-ru="В">
+                В <span class="text-gradient" data-en="Numbers" data-ru="цифрах">цифрах</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="The milestones that define our journey to date" data-ru="Вехи, определяющие наш путь на сегодняшний день">
+                Вехи, определяющие наш путь на сегодняшний день
+            </p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card tilt-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label" data-en="Happy Travelers" data-ru="Довольных туристов">Довольных туристов</div>
+                <div class="stat-sub" data-en="and growing" data-ru="и растёт">и растёт</div>
+            </div>
+            <div class="stat-card tilt-card">
+                <div class="stat-number">4.9</div>
+                <div class="stat-label" data-en="Average Rating" data-ru="Средний рейтинг">Средний рейтинг</div>
+                <div class="stat-sub" data-en="from 200+ reviews" data-ru="из 200+ отзывов">из 200+ отзывов</div>
+            </div>
+            <div class="stat-card tilt-card">
+                <div class="stat-number">46</div>
+                <div class="stat-label" data-en="Partner Hotels" data-ru="Отелей-партнёров">Отелей-партнёров</div>
+                <div class="stat-sub" data-en="across Kazakhstan" data-ru="по всему Казахстану">по всему Казахстану</div>
+            </div>
+            <div class="stat-card tilt-card">
+                <div class="stat-number">12+</div>
+                <div class="stat-label" data-en="Destinations" data-ru="Направлений">Направлений</div>
+                <div class="stat-sub" data-en="and counting" data-ru="и растёт">и растёт</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section container" id="story" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Our Journey" data-ru="Наш путь">Наш путь</span>
+            <h2 class="section-title" data-en="The ZagranEasy" data-ru="История">
+                История <span class="text-gradient" data-en="Story" data-ru="ZagranEasy Travel">ZagranEasy Travel</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="From idea to reality — our key milestones" data-ru="От идеи до реальности — наши ключевые вехи">
+                От идеи до реальности — наши ключевые вехи
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="year">2024</span>
+                <h3 data-en="The Founding Vision" data-ru="Основание">Основание</h3>
+                <p data-en="ZagranEasy Travel was founded with the mission to connect travelers from around the world with the authentic hospitality and wild beauty of Kazakhstan" data-ru="ZagranEasy Travel был основан с целью соединить путешественников со всего мира с подлинным гостеприимством и дикой красотой Казахстана">
+                    ZagranEasy Travel был основан с целью соединить путешественников со всего мира с подлинным гостеприимством и дикой красотой Казахстана
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="year">2024</span>
+                <h3 data-en="Platform Launch" data-ru="Запуск платформы">Запуск платформы</h3>
+                <p data-en="We introduced our proprietary journey planning system, allowing personalized itineraries to be created in seconds based on traveler preferences" data-ru="Мы представили собственную систему планирования, позволяющую создавать индивидуальные маршруты за секунды на основе предпочтений путешественника">
+                    Мы представили собственную систему планирования, позволяющую создавать индивидуальные маршруты за секунды на основе предпочтений путешественника
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="year">2025</span>
+                <h3 data-en="Partner Network" data-ru="Партнёрская сеть">Партнёрская сеть</h3>
+                <p data-en="Established partnerships with 46 hotels and over 50 local experience providers across Kazakhstan, ensuring unmatched quality" data-ru="Установили партнёрские отношения с 46 отелями и более чем 50 местными поставщиками впечатлений по всему Казахстану, обеспечивая непревзойдённое качество">
+                    Установили партнёрские отношения с 46 отелями и более чем 50 местными поставщиками впечатлений по всему Казахстану, обеспечивая непревзойдённое качество
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="year">2025</span>
+                <h3 data-en="500+ Travelers Served" data-ru="500+ путешественников">500+ путешественников</h3>
+                <p data-en="ZagranEasy Travel proudly served over 500 discerning travelers from around the world, earning a 4.9★ rating and a growing reputation for excellence" data-ru="ZagranEasy Travel с гордостью обслужил более 500 взыскательных путешественников со всего мира, заработав рейтинг 4,9★ и растущую репутацию за превосходство">
+                    ZagranEasy Travel с гордостью обслужил более 500 взыскательных путешественников со всего мира, заработав рейтинг 4,9★ и растущую репутацию за превосходство
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section container" id="team" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Leadership" data-ru="Руководство">Руководство</span>
+            <h2 class="section-title" data-en="Meet the" data-ru="Познакомьтесь">
+                Познакомьтесь <span class="text-gradient" data-en="Founder" data-ru="с основателем">с основателем</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="The professional who makes your journey unforgettable" data-ru="Профессионал, который делает ваше путешествие незабываемым">
+                Профессионал, который делает ваше путешествие незабываемым
+            </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member tilt-card">
+                <div class="team-avatar">
+                    <img src="https://res.cloudinary.com/k311aral/image/upload/v1789589587/707963936_18109560434304819_3104041802224686325_n.jpg" alt="Nurbol Nurkassymov — Founder & CEO" loading="lazy" />
+                </div>
+                <h4>Nurbol Nurkassymov</h4>
+                <div class="role" data-en="Founder &amp; CEO" data-ru="Основатель и CEO">Основатель и CEO</div>
+                <p data-en="Over 15 years in premium tourism. Passionate about Kazakhstan's culture and nature" data-ru="Более 15 лет в премиальном туризме. Страсть к культуре и природе Казахстана">
+                    Более 15 лет в премиальном туризме. Страсть к культуре и природе Казахстана
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="partners-section container" id="partners" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Partners" data-ru="Партнёры">Партнёры</span>
+            <h2 class="section-title" data-en="Trusted" data-ru="Надёжные">
+                Надёжные <span class="text-gradient" data-en="Collaborators" data-ru="партнёры">партнёры</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="We work with the best to offer you the finest experiences" data-ru="Мы работаем с лучшими, чтобы предложить вам лучшие впечатления">
+                Мы работаем с лучшими, чтобы предложить вам лучшие впечатления
+            </p>
+        </div>
+
+        <div class="partners-grid">
+            <div class="partner-card tilt-card">
+                <img src="https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Ritz-Carlton_cw8tfs.jpg" alt="46+ отелей" loading="lazy" />
+                <div class="partner-label">
+                    <span class="material-symbols-outlined">hotel</span>
+                    <div class="partner-title" data-en="46+ Hotels" data-ru="46+ Отелей">46+ Отелей</div>
+                    <div class="partner-sub" data-en="Premier accommodations" data-ru="Премиальное проживание">Премиальное проживание</div>
+                </div>
+            </div>
+            <div class="partner-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776596/Medeu_Ice_Skating_Rink_wmifrj.jpg" alt="50+ впечатлений" loading="lazy" />
+                <div class="partner-label">
+                    <span class="material-symbols-outlined">restaurant</span>
+                    <div class="partner-title" data-en="50+ Experiences" data-ru="50+ Впечатлений">50+ Впечатлений</div>
+                    <div class="partner-sub" data-en="Curated local activities" data-ru="Кураторские активности">Кураторские активности</div>
+                </div>
+            </div>
+            <div class="partner-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Vista_Sky_Restaurant_bwoikn.jpg" alt="VIP-транспорт" loading="lazy" />
+                <div class="partner-label">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    <div class="partner-title" data-en="VIP Transport" data-ru="VIP-транспорт">VIP-транспорт</div>
+                    <div class="partner-sub" data-en="Comfortable fleet partners" data-ru="Комфортабельный автопарк">Комфортабельный автопарк</div>
+                </div>
+            </div>
+            <div class="partner-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kok-Tobe_hill_chrk65.jpg" alt="Умное планирование" loading="lazy" />
+                <div class="partner-label">
+                    <span class="material-symbols-outlined">psychology</span>
+                    <div class="partner-title" data-en="Smart Planning" data-ru="Умное планирование">Умное планирование</div>
+                    <div class="partner-sub" data-en="Proprietary planning system" data-ru="Собственная система">Собственная система</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section container" id="contact" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="cta-wrapper">
+            <div class="cta-content">
+                <span class="section-tag" data-en="Start Your Journey" data-ru="Начните своё путешествие">Начните своё путешествие</span>
+                <h2 class="section-title" data-en="Ready to Explore" data-ru="Готовы исследовать">
+                    Готовы исследовать <span style="color: #ffffff;" data-en="Kazakhstan?" data-ru="Казахстан?">Казахстан?</span>
+                </h2>
+                <p class="section-description" data-en="We'll craft your perfect journey and take care of every detail." data-ru="Мы создадим ваше идеальное путешествие и позаботимся о каждой детали.">
+                    Мы создадим ваше идеальное путешествие и позаботимся о каждой детали.
+                </p>
+            </div>
+            <div class="cta-actions">
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span data-en="Plan Your Journey" data-ru="Запланировать путешествие">Запланировать путешествие</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span data-en="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" />
+                    </a>
+                    <p class="footer-description" data-en="Premium author's tours in Almaty and Almaty region." data-ru="Премиальные авторские путешествия по Алматы и Алматинской области.">
+                        Премиальные авторские путешествия по Алматы и Алматинской области.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Instagram">Instagram</a>
+                        <a href="#" class="social-link" aria-label="Facebook">Facebook</a>
+                        <a href="#" class="social-link" aria-label="YouTube">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-en="Explore" data-ru="Исследовать">Исследовать</h4>
+                        <a href="hotels.html" data-en="Hotels" data-ru="Отели">Отели</a>
+                        <a href="routes.html" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                        <a href="attractions.html" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                        <a href="about.html" data-en="About" data-ru="О нас">О нас</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-en="Support" data-ru="Поддержка">Поддержка</h4>
+                        <a href="#" data-en="Contact" data-ru="Контакты">Контакты</a>
+                        <a href="#" data-en="FAQ" data-ru="Вопросы и ответы">Вопросы и ответы</a>
+                        <a href="#" data-en="Sustainability" data-ru="Устойчивость">Устойчивость</a>
+                        <a href="#" data-en="Careers" data-ru="Карьера">Карьера</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-en="Legal" data-ru="Юридическая информация">Юридическая информация</h4>
+                        <a href="#" data-en="Privacy Policy" data-ru="Политика конфиденциальности">Политика конфиденциальности</a>
+                        <a href="#" data-en="Terms of Service" data-ru="Условия использования">Условия использования</a>
+                        <a href="#" data-en="Cookie Policy" data-ru="Политика использования cookie">Политика использования cookie</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZagranEasy Travel. All rights reserved.</p>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <span data-en="Crafted with precision in Almaty" data-ru="Сделано с душой в Алматы">Сделано с душой в Алматы</span>
+                    <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="footer-whatsapp">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
+                        +7 747 911 2606
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

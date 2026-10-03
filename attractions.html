@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1a2b" media="(prefers-color-scheme: dark)" />
+    <title>ZagranEasy Travel | Достопримечательности Алматы</title>
+    <meta name="description" content="Полный гид по достопримечательностям Алматы: рестораны, исторические места, парки, природа, развлечения и SPA. Рекомендации для вашего премиального тура" />
+    <link rel="canonical" href="https://zagrantours.com/attractions.html" />
+    <meta property="og:title" content="ZagranEasy Travel | Достопримечательности Алматы" />
+    <meta property="og:description" content="Кураторский гид по лучшим местам Алматы для взыскательных путешественников" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* ===== УНИКАЛЬНЫЕ СТИЛИ attractions.html ===== */
+
+        body { background: #ffffff; }
+        html.dark body { background: #0f1a2b; }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 100px 0 0 !important;
+            min-height: 55vh !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* ===== УНИКАЛЬНАЯ СЕТКА ДОСТОПРИМЕЧАТЕЛЬНОСТЕЙ ===== */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        /* ===== УНИКАЛЬНАЯ СЕТКА РЕКОМЕНДАЦИЙ ===== */
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 var(--container-padding);
+        }
+
+        /* ===== УНИКАЛЬНАЯ СЕТКА ФОТО-УСЛУГ ===== */
+        .photo-services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 var(--container-padding);
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 1024px) {
+            .recommendations-grid { grid-template-columns: repeat(2, 1fr); }
+            .photo-services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .photo-services-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        }
+        @media (max-width: 480px) {
+            .attractions-grid { grid-template-columns: 1fr; gap: 16px; }
+            .recommendations-grid { gap: 10px; }
+            .photo-services-grid { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar" role="banner">
+        <div class="navbar-inner">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" />
+            </a>
+            <nav class="nav-links" role="menubar">
+                <a href="index.html" class="nav-link" role="menuitem" data-en="Home" data-ru="Главная">Главная</a>
+                <a href="hotels.html" class="nav-link" role="menuitem" data-en="Hotels" data-ru="Отели">Отели</a>
+                <a href="routes.html" class="nav-link" role="menuitem" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                <a href="attractions.html" class="nav-link active" role="menuitem" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                <a href="about.html" class="nav-link" role="menuitem" data-en="About" data-ru="О нас">О нас</a>
+                <button class="nav-link nav-cta" onclick="openModal()" role="menuitem" data-en="Plan Your Visit" data-ru="Запланировать посещение">Запланировать посещение</button>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')" aria-label="Переключить на русский">RU</button>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+        <div class="mobile-menu-inner">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo">
+                    <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" style="height: 36px; width: auto;" />
+                </a>
+                <button class="mobile-close" id="mobileClose" aria-label="Close menu">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="mobile-menu-links">
+                <a href="index.html" class="mobile-link" data-en="Home" data-ru="Главная">Главная</a>
+                <a href="hotels.html" class="mobile-link" data-en="Hotels" data-ru="Отели">Отели</a>
+                <a href="routes.html" class="mobile-link" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                <a href="attractions.html" class="mobile-link active" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                <a href="about.html" class="mobile-link" data-en="About" data-ru="О нас">О нас</a>
+                <button class="mobile-link mobile-cta" onclick="openModal(); toggleMenu();" data-en="Plan Your Visit" data-ru="Запланировать посещение">Запланировать посещение</button>
+            </nav>
+            <div class="mobile-menu-footer">
+                <p class="mobile-contact">info@zagrantours.com</p>
+                <p class="mobile-contact">+7 727 123 4567</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 data-en="Plan Your Visit" data-ru="Запланируйте посещение">Запланируйте посещение</h2>
+            <p data-en="Fill in the details and our team will help you explore Almaty's landmarks" data-ru="Заполните данные, и наша команда поможет вам исследовать достопримечательности Алматы">
+                Заполните данные, и наша команда поможет вам исследовать достопримечательности Алматы
+            </p>
+            <form id="requestForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="guestName" data-en="Full Name" data-ru="Ваше имя">Ваше имя</label>
+                    <input type="text" id="guestName" placeholder="Как вас зовут?" autocomplete="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="guestPhone" data-en="Phone Number" data-ru="Номер телефона">Номер телефона</label>
+                    <input type="tel" id="guestPhone" placeholder="+7 777 123 4567" autocomplete="tel" inputmode="tel" required />
+                </div>
+                <div class="form-group">
+                    <label for="guestDate" data-en="Preferred Travel Date" data-ru="Дата путешествия">Дата путешествия</label>
+                    <input type="date" id="guestDate" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit" data-en="Send Request" data-ru="Отправить заявку">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <video src="https://res.cloudinary.com/rmytndxw/video/upload/v1786672499/attractions.mp4" autoplay muted playsinline webkit-playsinline preload="metadata" poster="" class="hero-video" id="heroVideo"></video>
+        </div>
+
+        <div class="container hero-content">
+            <span class="hero-badge" data-en="Discover Almaty" data-ru="Откройте Алматы">Откройте Алматы</span>
+            <h1 class="hero-title">
+                <span class="hero-title-line" data-en="Iconic Landmarks" data-ru="Знаковые достопримечательности">Знаковые достопримечательности</span>
+                <span class="hero-title-line"><span class="text-gradient" data-en="&amp; Hidden Gems" data-ru="&amp; Скрытые жемчужины">&amp; Скрытые жемчужины</span></span>
+            </h1>
+            <p class="hero-subtitle" data-en="From the panoramic heights of Kok-Tobe to the historic Ascension Cathedral — explore the treasures that define Almaty's unique character" data-ru="От панорамных высот Кок-Тобе до исторического Вознесенского собора — исследуйте сокровища, определяющие уникальный характер Алматы">
+                От панорамных высот Кок-Тобе до исторического Вознесенского собора — исследуйте сокровища, определяющие уникальный характер Алматы
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="document.getElementById('attractions').scrollIntoView({ behavior: 'smooth' });">
+                    <span data-en="Explore Now" data-ru="Исследовать">Исследовать</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <button class="btn btn-secondary btn-plan-trip" onclick="openModal()" data-en="Plan Your Visit" data-ru="Запланировать посещение">Запланировать посещение</button>
+                <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="btn-whatsapp">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span data-en="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <div class="filters-bar" id="filtersBar">
+        <div class="filters-inner">
+            <button class="filter-btn active" data-filter="all" data-en="All" data-ru="Все">Все</button>
+            <button class="filter-btn" data-filter="restaurants" data-en="Restaurants" data-ru="Рестораны">Рестораны</button>
+            <button class="filter-btn" data-filter="historical" data-en="Historical" data-ru="Исторические">Исторические</button>
+            <button class="filter-btn" data-filter="parks" data-en="Parks" data-ru="Парки">Парки</button>
+            <button class="filter-btn" data-filter="nature" data-en="Nature" data-ru="Природа">Природа</button>
+            <button class="filter-btn" data-filter="entertainment" data-en="Entertainment" data-ru="Развлечения">Развлечения</button>
+            <button class="filter-btn" data-filter="spa" data-en="SPA &amp; Wellness" data-ru="SPA &amp; Wellness">SPA &amp; Wellness</button>
+        </div>
+    </div>
+
+    <!-- ATTRACTIONS GRID -->
+    <section class="container" id="attractions" style="scroll-margin-top: 100px;">
+        <div class="section-header">
+            <span class="section-tag" data-en="Curated Selection" data-ru="Кураторская подборка">Кураторская подборка</span>
+            <h2 class="section-title" data-en="The Soul of" data-ru="Душа">
+                Душа <span class="text-gradient" data-en="Almaty" data-ru="Алматы">Алматы</span>
+            </h2>
+            <p class="section-description" data-en="Each location tells a story — about culture, history and the spirit of Kazakhstan" data-ru="Каждая локация рассказывает историю — о культуре, истории и духе Казахстана">
+                Каждая локация рассказывает историю — о культуре, истории и духе Казахстана
+            </p>
+        </div>
+
+        <div class="attractions-grid" id="attractionsGrid"></div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section container" id="map" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Location Map" data-ru="Карта локаций">Карта локаций</span>
+            <h2 class="section-title" data-en="Explore the" data-ru="Исследуйте">
+                Исследуйте <span class="text-gradient" data-en="Map" data-ru="карту">карту</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="All the key landmarks of Almaty on one map — restaurants, historical sites, parks, nature and entertainment" data-ru="Все ключевые локации Алматы на одной карте — рестораны, исторические места, парки, природа и развлечения">
+                Все ключевые локации Алматы на одной карте — рестораны, исторические места, парки, природа и развлечения
+            </p>
+        </div>
+
+        <div class="map-wrapper">
+            <iframe
+                src="https://www.google.com/maps?q=Almaty,Kazakhstan&z=11&output=embed"
+                width="100%"
+                height="500"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Almaty Attractions Map"
+            ></iframe>
+        </div>
+    </section>
+
+    <!-- RECOMMENDATIONS -->
+    <section class="recommendations-section container" id="recommendations" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Insider Tips" data-ru="Советы инсайдеров">Советы инсайдеров</span>
+            <h2 class="section-title" data-en="Curator" data-ru="Советы">
+                Советы <span class="text-gradient" data-en="Recommendations" data-ru="куратора">куратора</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="Expert tips to get the most out of your visit" data-ru="Экспертные советы, чтобы получить максимум от вашего визита">
+                Экспертные советы, чтобы получить максимум от вашего визита
+            </p>
+        </div>
+
+        <div class="recommendations-grid">
+            <div class="recommendation-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kok-Tobe_hill_chrk65.jpg" alt="Лучшие места для фото" loading="lazy" />
+                <div class="recommendation-label">
+                    <span class="material-symbols-outlined">photo_camera</span>
+                    <span data-en="Best Photo Spots" data-ru="Лучшие места для фото">Лучшие места для фото</span>
+                </div>
+            </div>
+            <div class="recommendation-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776594/Green_Bazaar_zynkty.jpg" alt="Местная кухня" loading="lazy" />
+                <div class="recommendation-label">
+                    <span class="material-symbols-outlined">restaurant</span>
+                    <span data-en="Local Cuisine" data-ru="Местная кухня">Местная кухня</span>
+                </div>
+            </div>
+            <div class="recommendation-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776589/Arbat_Zhibek_Zholy_Pedestrian_Street_opzydn.jpg" alt="Пешеходные маршруты" loading="lazy" />
+                <div class="recommendation-label">
+                    <span class="material-symbols-outlined">directions_walk</span>
+                    <span data-en="Walking Routes" data-ru="Пешеходные маршруты">Пешеходные маршруты</span>
+                </div>
+            </div>
+            <div class="recommendation-card tilt-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776588/Abay_Kazakh_National_Opera_and_Ballet_Theatre_qilkk0.jpg" alt="Культурные события" loading="lazy" />
+                <div class="recommendation-label">
+                    <span class="material-symbols-outlined">event</span>
+                    <span data-en="Cultural Events" data-ru="Культурные события">Культурные события</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INCLUSIONS -->
+    <section class="container" id="inclusions" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="What's Included" data-ru="Что входит в стоимость">Что входит в стоимость</span>
+            <h2 class="section-title">
+                <span data-en="Included" data-ru="Включено">Включено</span>
+                <span class="text-gradient" data-en="&amp; Excluded" data-ru="и не включено">&amp; не включено</span>
+            </h2>
+        </div>
+
+        <div class="inc-grid">
+            <div class="inc-card included">
+                <div class="inc-card-title">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span data-en="Included" data-ru="Входит в стоимость">Входит в стоимость</span>
+                </div>
+                <ul>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Accommodation" data-ru="Проживание">Проживание</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Breakfasts" data-ru="Завтраки">Завтраки</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Transfers" data-ru="Трансфер">Трансфер</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Guide" data-ru="Гид">Гид</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Tour escort" data-ru="Сопровождение">Сопровождение</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Drinking water" data-ru="Питьевая вода">Питьевая вода</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Route organization" data-ru="Организация маршрута">Организация маршрута</span></li>
+                </ul>
+            </div>
+
+            <div class="inc-card excluded">
+                <div class="inc-card-title">
+                    <span class="material-symbols-outlined">cancel</span>
+                    <span data-en="Not Included" data-ru="Не входит в стоимость">Не входит в стоимость</span>
+                </div>
+                <ul>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Flights" data-ru="Авиабилеты">Авиабилеты</span></li>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Personal expenses" data-ru="Личные расходы">Личные расходы</span></li>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Insurance" data-ru="Страховка">Страховка</span></li>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Additional services" data-ru="Дополнительные услуги">Дополнительные услуги</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO SERVICES -->
+    <section class="services-section container" id="services" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Additional Services" data-ru="Дополнительные услуги">Дополнительные услуги</span>
+            <h2 class="section-title" data-en="Enhance Your" data-ru="Улучшите ваше">
+                Улучшите ваше <span class="text-gradient" data-en="Journey" data-ru="путешествие">путешествие</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="Experiences that turn a trip into a memory" data-ru="Впечатления, которые превращают поездку в воспоминание">
+                Впечатления, которые превращают поездку в воспоминание.
+            </p>
+        </div>
+
+        <div class="photo-services-grid">
+            <div class="photo-service-card tilt-card" onclick="openModal()">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784778147/Kasteev_Museum_wryoco.jpg" alt="Конные прогулки" loading="lazy" />
+                <div class="service-label">
+                    <span class="material-symbols-outlined">pets</span>
+                    <span data-en="Horseback Riding" data-ru="Конные прогулки">Конные прогулки</span>
+                </div>
+            </div>
+            <div class="photo-service-card tilt-card" onclick="openModal()">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Terrenkur_Walking_Trail_onifbt.jpg" alt="Индивидуальная фотосессия" loading="lazy" />
+                <div class="service-label">
+                    <span class="material-symbols-outlined">photo_camera</span>
+                    <span data-en="Private Photo Session" data-ru="Индивидуальная фотосессия">Индивидуальная фотосессия</span>
+                </div>
+            </div>
+            <div class="photo-service-card tilt-card" onclick="openModal()">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/Sandyq_ilzk29.jpg" alt="Национальное шоу" loading="lazy" />
+                <div class="service-label">
+                    <span class="material-symbols-outlined">celebration</span>
+                    <span data-en="National Show" data-ru="Национальное шоу">Национальное шоу</span>
+                </div>
+            </div>
+            <div class="photo-service-card tilt-card" onclick="openModal()">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Vista_Sky_Restaurant_bwoikn.jpg" alt="VIP-трансфер" loading="lazy" />
+                <div class="service-label">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    <span data-en="VIP Transfer" data-ru="VIP-трансфер">VIP-трансфер</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq container" id="faq" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="FAQ" data-ru="Вопросы и ответы">Вопросы и ответы</span>
+            <h2 class="section-title" data-en="Frequently Asked" data-ru="Часто задаваемые">
+                Часто задаваемые <span class="text-gradient" data-en="Questions" data-ru="вопросы">вопросы</span>
+            </h2>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="What is included in the tour price?" data-ru="Что включено в стоимость тура?">Что включено в стоимость тура?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Accommodation, breakfasts, transfers, guide services, escort, drinking water, and route organization. See the 'Included' section for details" data-ru="Проживание, завтраки, трансфер, услуги гида, сопровождение, питьевая вода и организация маршрута. Подробнее — в разделе «Входит в стоимость».">
+                    Проживание, завтраки, трансфер, услуги гида, сопровождение, питьевая вода и организация маршрута. Подробнее — в разделе «Входит в стоимость»
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="Can I customize my itinerary?" data-ru="Можно ли изменить маршрут под себя?">Можно ли изменить маршрут под себя?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Absolutely. All tours are 100% customizable — program, accommodation and additional services" data-ru="Конечно. Все туры на 100% индивидуальны — программа, проживание и дополнительные услуги">
+                    Конечно. Все туры на 100% индивидуальны — программа, проживание и дополнительные услуги
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="What is the difference between Business and VIP?" data-ru="В чём разница между Business и VIP?">В чём разница между Business и VIP?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Business — comfortable hotels (Hilton, DoubleTree, Novotel), standard transfers. VIP — premium hotels (Ritz-Carlton, Rahat Palace, Royal Tulip), luxury cars, private photographer and helicopter tours" data-ru="Business — комфортные отели (Hilton, DoubleTree, Novotel), стандартный трансфер. VIP — премиальные отели (Ritz-Carlton, Rahat Palace, Royal Tulip), автомобили премиум-класса, личный фотограф и вертолётные экскурсии">
+                    Business — комфортные отели (Hilton, DoubleTree, Novotel), стандартный трансфер. VIP — премиальные отели (Ritz-Carlton, Rahat Palace, Royal Tulip), автомобили премиум-класса, личный фотограф и вертолётные экскурсии
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="Are flights included?" data-ru="Включены ли авиабилеты?">Включены ли авиабилеты?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="No. We can help with booking if needed" data-ru="Нет. При необходимости поможем с бронированием">
+                    Нет. При необходимости поможем с бронированием
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="Do you offer family tours?" data-ru="Есть ли туры для семей с детьми?">Есть ли туры для семей с детьми?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Yes — family-friendly programs with adjusted pace and activities for children" data-ru="Да — программы, адаптированные для семей: темп, питание и активности с учётом детей">
+                    Да — программы, адаптированные для семей: темп, питание и активности с учётом детей
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section container" id="contact" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="cta-wrapper">
+            <div class="cta-content">
+                <span class="section-tag" data-en="Start Your Journey" data-ru="Начните своё путешествие">Начните своё путешествие</span>
+                <h2 class="section-title" data-en="Ready to Explore" data-ru="Готовы исследовать">
+                    Готовы исследовать <span style="color: #ffffff;" data-en="Almaty?" data-ru="Алматы?">Алматы?</span>
+                </h2>
+                <p class="section-description" data-en="Let us create a personalized itinerary that includes all the landmarks you want to see" data-ru="Позвольте нам создать индивидуальный маршрут, который включит все локации, которые вы хотите увидеть">
+                    Позвольте нам создать индивидуальный маршрут, который включит все локации, которые вы хотите увидеть
+                </p>
+            </div>
+            <div class="cta-actions">
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span data-en="Plan Your Visit" data-ru="Запланировать посещение">Запланировать посещение</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span data-en="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" />
+                    </a>
+                    <p class="footer-description" data-en="Premium author's tours in Almaty and Almaty region" data-ru="Премиальные авторские путешествия по Алматы и Алматинской области">
+                        Премиальные авторские путешествия по Алматы и Алматинской области
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Instagram">Instagram</a>
+                        <a href="#" class="social-link" aria-label="Facebook">Facebook</a>
+                        <a href="#" class="social-link" aria-label="YouTube">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-en="Explore" data-ru="Исследовать">Исследовать</h4>
+                        <a href="hotels.html" data-en="Hotels" data-ru="Отели">Отели</a>
+                        <a href="routes.html" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                        <a href="attractions.html" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                        <a href="about.html" data-en="About" data-ru="О нас">О нас</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-en="Support" data-ru="Поддержка">Поддержка</h4>
+                        <a href="#" data-en="Contact" data-ru="Контакты">Контакты</a>
+                        <a href="#" data-en="FAQ" data-ru="Вопросы и ответы">Вопросы и ответы</a>
+                        <a href="#" data-en="Sustainability" data-ru="Устойчивость">Устойчивость</a>
+                        <a href="#" data-en="Careers" data-ru="Карьера">Карьера</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-en="Legal" data-ru="Юридическая информация">Юридическая информация</h4>
+                        <a href="#" data-en="Privacy Policy" data-ru="Политика конфиденциальности">Политика конфиденциальности</a>
+                        <a href="#" data-en="Terms of Service" data-ru="Условия использования">Условия использования</a>
+                        <a href="#" data-en="Cookie Policy" data-ru="Политика использования cookie">Политика использования cookie</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZagranEasy Travel. All rights reserved.</p>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <span data-en="Crafted with precision in Almaty" data-ru="Сделано с душой в Алматы">Сделано с душой в Алматы</span>
+                    <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="footer-whatsapp">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
+                        +7 747 911 2606
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+    <script>
+        // ===== ДАННЫЕ ДОСТОПРИМЕЧАТЕЛЬНОСТЕЙ =====
+        const attractionsData = [
+            { id: 1, title: "Sandyq", category: "restaurants", tag: "Kazakh Cuisine", tagRu: "Казахская кухня", rating: "4.8", reviews: "1.2k", desc: "Modern Kazakh cuisine in an elegant interior", descRu: "Современная казахская кухня в элегантном интерьере", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/Sandyq_ilzk29.jpg" },
+            { id: 2, title: "Nuala", category: "restaurants", tag: "European Cuisine", tagRu: "Европейская кухня", rating: "4.9", reviews: "980", desc: "European restaurant with author's cuisine", descRu: "Европейский ресторан с авторской кухней", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776598/Nuala_f8w98y.jpg" },
+            { id: 3, title: "Navat", category: "restaurants", tag: "Uzbek Cuisine", tagRu: "Узбекская кухня", rating: "4.7", reviews: "2.1k", desc: "Authentic Uzbek cuisine in an oriental style", descRu: "Аутентичная узбекская кухня в восточном стиле", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776597/Navat_fszyhp.jpg" },
+            { id: 4, title: "Auyl", category: "restaurants", tag: "Kazakh Cuisine", tagRu: "Казахская кухня", rating: "4.8", reviews: "1.5k", desc: "Traditional Kazakh cuisine in ethno style", descRu: "Традиционная казахская кухня в стиле этно", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776591/AUYL_aiymms.jpg" },
+            { id: 5, title: "Qaimaq", category: "restaurants", tag: "Kazakh Cuisine", tagRu: "Казахская кухня", rating: "4.6", reviews: "870", desc: "Modern Kazakh cuisine with an author's approach", descRu: "Современная казахская кухня с авторским подходом", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776598/Qaimaq_ari9mh.jpg" },
+            { id: 6, title: "Beefeater Dostyk", category: "restaurants", tag: "Steakhouse", tagRu: "Стейк-хаус", rating: "4.7", reviews: "1.1k", desc: "Steakhouse with the best cuts of meat", descRu: "Стейк-хаус с лучшими сортами мяса", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776592/Beefeater_Dostyk_wos0rz.jpg" },
+            { id: 7, title: "Ocean Basket", category: "restaurants", tag: "Seafood", tagRu: "Морепродукты", rating: "4.5", reviews: "2.3k", desc: "Popular seafood restaurant", descRu: "Популярный ресторан морепродуктов", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776597/Ocean_Basket_ftb24u.jpg" },
+            { id: 8, title: "ABAY Restaurant", category: "restaurants", tag: "European Cuisine", tagRu: "Европейская кухня", rating: "4.9", reviews: "760", desc: "Restaurant on Kok-Tobe with a panoramic view", descRu: "Ресторан на Кок-Тобе с панорамным видом", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776587/ABAY_Restaurant_woxqpv.jpg" },
+            { id: 9, title: "Chef Restaurant", category: "restaurants", tag: "Author's Cuisine", tagRu: "Авторская кухня", rating: "4.8", reviews: "650", desc: "Author's cuisine from the chef", descRu: "Авторская кухня от шеф-повара", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Chef_Restaurant_zckjwk.jpg" },
+            { id: 10, title: "Darejani", category: "restaurants", tag: "Georgian Cuisine", tagRu: "Грузинская кухня", rating: "4.7", reviews: "1.4k", desc: "Authentic Georgian cuisine and wines", descRu: "Аутентичная грузинская кухня и вина", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776592/Darejani_bzxq8f.jpg" },
+            { id: 11, title: "Line Brew", category: "restaurants", tag: "Craft Beer", tagRu: "Крафтовое пиво", rating: "4.5", reviews: "980", desc: "Craft brewery with great food", descRu: "Крафтовая пивоварня с отличной кухней", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776596/Line_Brew_kmyq5j.jpg" },
+            { id: 12, title: "Del Papa", category: "restaurants", tag: "Italian Cuisine", tagRu: "Итальянская кухня", rating: "4.7", reviews: "1.1k", desc: "Authentic Italian pizza and pasta", descRu: "Настоящая итальянская пицца и паста", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776592/Del_Papa_rhabsr.jpg" },
+            { id: 13, title: "Basilic", category: "restaurants", tag: "Mediterranean", tagRu: "Средиземноморская", rating: "4.6", reviews: "890", desc: "Mediterranean cuisine in a cozy atmosphere", descRu: "Средиземноморская кухня в уютной атмосфере", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776591/Basilic_uhyygg.jpg" },
+            { id: 14, title: "TITO Arcanum", category: "restaurants", tag: "Author's Cuisine", tagRu: "Авторская кухня", rating: "4.9", reviews: "540", desc: "Restaurant with author's cuisine and a secret menu", descRu: "Ресторан с авторской кухней и секретным меню", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/TITO_Arcanum_woqx2g.jpg" },
+            { id: 15, title: "Crudo Steakhouse", category: "restaurants", tag: "Steakhouse", tagRu: "Стейк-хаус", rating: "4.8", reviews: "720", desc: "Exclusive steakhouse with dry aging", descRu: "Эксклюзивный стейк-хаус с сухим вызреванием", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776592/Crudo_Steakhouse_ng4ie4.jpg" },
+            { id: 16, title: "Parmigiano Group", category: "restaurants", tag: "Italian Cuisine", tagRu: "Итальянская", rating: "4.6", reviews: "1.3k", desc: "Italian restaurant chain", descRu: "Сеть итальянских ресторанов", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776597/Parmigiano_Group_k23jhc.jpg" },
+            { id: 17, title: "Tokyo Ramen Izakaya", category: "restaurants", tag: "Japanese Cuisine", tagRu: "Японская", rating: "4.7", reviews: "1.8k", desc: "Authentic Japanese ramen and izakaya", descRu: "Аутентичный японский рамен и изакая", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Tokyo_Ramen_Izakaya_lafouv.jpg" },
+            { id: 18, title: "Cafeteria", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.4", reviews: "2.1k", desc: "Popular coffee shop with great coffee", descRu: "Популярная кофейня с отличным кофе", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776589/Cafeteria_heps1b.jpg" },
+            { id: 19, title: "Vanilla Coffee Shop", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.5", reviews: "1.6k", desc: "Cozy coffee shop with homemade pastries", descRu: "Уютная кофейня с домашней выпечкой", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Vanilla_Coffee_Shop_xioqdt.jpg" },
+            { id: 20, title: "Sensilyo Coffee", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.6", reviews: "1.2k", desc: "Coffee shop with author's drinks", descRu: "Кофейня с авторскими напитками", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/Sensilyo_Coffee_v4zjlk.png" },
+            { id: 21, title: "Wine Cafe & Shop", category: "restaurants", tag: "Wine Bar", tagRu: "Винный бар", rating: "4.8", reviews: "670", desc: "Wine bar with an extensive wine list", descRu: "Винный бар с большой картой вин", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776603/Wine_Cafe_Shop_bfpjvw.jpg" },
+            { id: 22, title: "Coffeedelia", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.7", reviews: "890", desc: "Coffee shop with a unique atmosphere", descRu: "Кофейня с уникальной атмосферой", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Coffeedelia_ta7p47.jpg" },
+            { id: 23, title: "Bowler Coffee", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.5", reviews: "1.1k", desc: "Coffee shop in an industrial style", descRu: "Кофейня в индустриальном стиле", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776589/Bowler_Coffee_ueem4h.png" },
+            { id: 24, title: "Espresso Bar", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.4", reviews: "760", desc: "Italian espresso and pastries", descRu: "Итальянский эспрессо и выпечка", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776593/Espresso_Bar_bn5vny.jpg" },
+            { id: 25, title: "Bonjour Cafe", category: "restaurants", tag: "Coffee Shop", tagRu: "Кофейня", rating: "4.6", reviews: "980", desc: "French coffee shop with croissants", descRu: "Французская кофейня с круассанами", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776589/Bonjour_Cafe_fwyo6y.png" },
+            { id: 26, title: "Vista Restaurant", category: "restaurants", tag: "Panoramic", tagRu: "Панорамный", rating: "4.9", reviews: "540", desc: "Restaurant with a stunning panoramic view", descRu: "Ресторан с потрясающим панорамным видом", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Vista_Restaurant_mkqbb7.jpg" },
+            { id: 27, title: "Inzhu Restaurant", category: "restaurants", tag: "Kazakh Cuisine", tagRu: "Казахская", rating: "4.7", reviews: "820", desc: "Restaurant with traditional Kazakh cuisine", descRu: "Ресторан с традиционной казахской кухней", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776594/Inzhu_Restaurant_otwza6.jpg" },
+            { id: 28, title: "Korean House", category: "restaurants", tag: "Korean Cuisine", tagRu: "Корейская", rating: "4.6", reviews: "1.4k", desc: "Authentic Korean cuisine", descRu: "Аутентичная корейская кухня", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776596/Korean_House_qm6cuq.png" },
+            { id: 29, title: "Thai Restaurant Bangkok", category: "restaurants", tag: "Thai Cuisine", tagRu: "Тайская", rating: "4.7", reviews: "1.1k", desc: "Authentic Thai cuisine", descRu: "Настоящая тайская кухня", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/Thai_Restaurant_Bangkok_tkniak.jpg" },
+            { id: 30, title: "Vista Sky Restaurant", category: "restaurants", tag: "Panoramic", tagRu: "Панорамный", rating: "4.9", reviews: "460", desc: "High-altitude restaurant with a panoramic view", descRu: "Ресторан на высоте с панорамным видом", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Vista_Sky_Restaurant_bwoikn.jpg" },
+            { id: 31, title: "Panfilov Park", category: "parks", tag: "Park", tagRu: "Парк", rating: "4.8", reviews: "3.2k", desc: "Historic park with Ascension Cathedral", descRu: "Исторический парк с Вознесенским собором", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776597/Panfilov_Park_umau3f.jpg" },
+            { id: 32, title: "Ascension Cathedral", category: "historical", tag: "Architecture", tagRu: "Архитектура", rating: "4.9", reviews: "2.8k", desc: "One of the tallest wooden cathedrals in the world", descRu: "Один из самых высоких деревянных соборов в мире", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Ascension_Cathedra_ogu3bk.jpg" },
+            { id: 33, title: "Memorial of Glory", category: "historical", tag: "Memorial", tagRu: "Мемориал", rating: "4.7", reviews: "1.9k", desc: "Memorial in honor of WWII heroes", descRu: "Мемориал в честь героев ВОВ", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776597/Memorial_of_Glory_tojpmn.jpg" },
+            { id: 34, title: "Central Mosque", category: "historical", tag: "Religion", tagRu: "Религия", rating: "4.8", reviews: "1.5k", desc: "One of the largest mosques in Kazakhstan", descRu: "Одна из крупнейших мечетей Казахстана", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Central_Mosque_usz6p7.jpg" },
+            { id: 35, title: "Central Museum of Kazakhstan", category: "historical", tag: "Museum", tagRu: "Музей", rating: "4.6", reviews: "2.1k", desc: "The largest museum in Kazakhstan", descRu: "Крупнейший музей Казахстана", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784778147/Central_Museum_y4ahmo.jpg" },
+            { id: 36, title: "Kasteev Museum", category: "historical", tag: "Museum", tagRu: "Музей", rating: "4.7", reviews: "1.2k", desc: "Museum of Fine Arts", descRu: "Музей изобразительных искусств", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784778147/Kasteev_Museum_wryoco.jpg" },
+            { id: 37, title: "Abay Opera & Ballet Theatre", category: "historical", tag: "Theatre", tagRu: "Театр", rating: "4.9", reviews: "1.8k", desc: "The main theatre of Almaty", descRu: "Главный театр Алматы", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776588/Abay_Kazakh_National_Opera_and_Ballet_Theatre_qilkk0.jpg" },
+            { id: 38, title: "Arbat", category: "entertainment", tag: "Street", tagRu: "Улица", rating: "4.5", reviews: "2.5k", desc: "Pedestrian street with artists", descRu: "Пешеходная улица с художниками", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776589/Arbat_Zhibek_Zholy_Pedestrian_Street_opzydn.jpg" },
+            { id: 39, title: "Green Bazaar", category: "entertainment", tag: "Market", tagRu: "Рынок", rating: "4.6", reviews: "3.1k", desc: "Central market with local products", descRu: "Центральный рынок с местными продуктами", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776594/Green_Bazaar_zynkty.jpg" },
+            { id: 40, title: "Republic Square", category: "historical", tag: "Square", tagRu: "Площадь", rating: "4.5", reviews: "1.7k", desc: "The main square of the city", descRu: "Главная площадь города", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776598/Republic_Square_ql48la.jpg" },
+            { id: 41, title: "Botanical Garden", category: "parks", tag: "Park", tagRu: "Парк", rating: "4.7", reviews: "2.3k", desc: "An amazing collection of plants", descRu: "Удивительная коллекция растений", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776588/Botanical_Garden_dim7yv.jpg" },
+            { id: 42, title: "First President Park", category: "parks", tag: "Park", tagRu: "Парк", rating: "4.8", reviews: "1.9k", desc: "Modern park with fountains", descRu: "Современный парк с фонтанами", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776593/First_President_Park_pdpkoq.jpg" },
+            { id: 43, title: "Central Park of Culture", category: "parks", tag: "Park", tagRu: "Парк", rating: "4.5", reviews: "2.7k", desc: "Historic park with attractions", descRu: "Исторический парк с аттракционами", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Central_Park_of_Culture_and_Leisure_tcozbe.jpg" },
+            { id: 44, title: "Terrenkur", category: "parks", tag: "Trail", tagRu: "Тропа", rating: "4.9", reviews: "1.4k", desc: "Popular walking trail", descRu: "Популярная тропа для прогулок", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Terrenkur_Walking_Trail_onifbt.jpg" },
+            { id: 45, title: "Kok-Tobe", category: "nature", tag: "Mountain", tagRu: "Гора", rating: "4.9", reviews: "4.5k", desc: "The main observation deck of Almaty", descRu: "Главная смотровая площадка Алматы", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kok-Tobe_hill_chrk65.jpg" },
+            { id: 46, title: "Medeu", category: "nature", tag: "Sports", tagRu: "Спорт", rating: "4.8", reviews: "2.9k", desc: "High-altitude ice skating rink", descRu: "Высокогорный каток", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776596/Medeu_Ice_Skating_Rink_wmifrj.jpg" },
+            { id: 47, title: "Shymbulak", category: "nature", tag: "Ski Resort", tagRu: "Горнолыжка", rating: "4.9", reviews: "2.6k", desc: "Popular ski resort", descRu: "Популярный горнолыжный курорт", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776599/Shymbulak_Ski_Resort_nk1dh1.jpg" },
+            { id: 48, title: "Big Almaty Lake", category: "nature", tag: "Lake", tagRu: "Озеро", rating: "4.9", reviews: "3.8k", desc: "Turquoise lake in the mountains", descRu: "Бирюзовое озеро в горах", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776593/Big_Almaty_Lake_buicpk.png" },
+            { id: 49, title: "Charyn Canyon", category: "nature", tag: "Canyon", tagRu: "Каньон", rating: "4.9", reviews: "4.2k", desc: "Majestic 'Valley of Castles' canyon", descRu: "Величественный каньон «Долина замков»", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Charyn_Canyon_mc3l6f.jpg" },
+            { id: 50, title: "Kolsay Lake", category: "nature", tag: "Lake", tagRu: "Озеро", rating: "4.9", reviews: "3.5k", desc: "The pearl of the Tien Shan", descRu: "Жемчужина Тянь-Шаня", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kolsai_Kaindy_Lakes_qubkus.jpg" },
+            { id: 51, title: "Almaty Zoo", category: "entertainment", tag: "Zoo", tagRu: "Зоопарк", rating: "4.4", reviews: "2.4k", desc: "One of the oldest zoos", descRu: "Один из старейших зоопарков", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776589/Almaty_Zoo_m40evh.jpg" },
+            { id: 52, title: "MEGA Alma-Ata", category: "entertainment", tag: "Mall", tagRu: "ТЦ", rating: "4.5", reviews: "2.9k", desc: "Large shopping mall", descRu: "Крупный торговый центр", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776597/MEGA_Alma-Ata_Shopping_Mall_hbmnof.jpg" },
+            { id: 53, title: "Esentai Mall", category: "entertainment", tag: "Mall", tagRu: "ТЦ", rating: "4.7", reviews: "1.6k", desc: "Shopping center", descRu: "Торговый центр", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784776593/Esentai_Mall_cafqjq.png" },
+            { id: 54, title: "Arasan Wellness & SPA", category: "spa", tag: "SPA", tagRu: "SPA", rating: "4.8", reviews: "2.1k", desc: "The most famous bath complex in the city", descRu: "Самый известный банный комплекс города", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784778146/Arasan_Wellness_SPA_hme44t.png" },
+            { id: 55, title: "Royal Tulip SPA", category: "spa", tag: "SPA", tagRu: "SPA", rating: "4.9", reviews: "760", desc: "SPA at the Royal Tulip hotel", descRu: "SPA в отеле Royal Tulip", img: "https://res.cloudinary.com/veyagvpj/image/upload/v1784778147/Royal_Tulip_SPA_xmgork.jpg" }
+        ];
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+            });
+        }
+
+        function renderAttractions(filter = 'all') {
+            const grid = document.getElementById('attractionsGrid');
+            const lang = window.currentLang || 'ru';
+            let html = '';
+
+            const filtered = filter === 'all' ? attractionsData : attractionsData.filter(function(a) {
+                return a.category === filter;
+            });
+
+            if (filtered.length === 0) {
+                const noResults = lang === 'ru' ? 'Локации не найдены' : 'No locations found';
+                const tryAdjust = lang === 'ru' ? 'Попробуйте выбрать другую категорию' : 'Try selecting a different category';
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 0; color: var(--text-variant);">' +
+                    '<span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px; opacity: 0.3;">explore_off</span>' +
+                    '<h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: var(--text-strong);">' + noResults + '</h3>' +
+                    '<p>' + tryAdjust + '</p></div>';
+                return;
+            }
+
+            const grouped = {};
+            filtered.forEach(function(item) {
+                if (!grouped[item.category]) grouped[item.category] = [];
+                grouped[item.category].push(item);
+            });
+
+            const categoryNames = {
+                restaurants: lang === 'ru' ? 'Рестораны и кафе' : 'Restaurants & Cafes',
+                historical: lang === 'ru' ? 'Исторические места' : 'Historical Landmarks',
+                parks: lang === 'ru' ? 'Парки и скверы' : 'Parks & Squares',
+                nature: lang === 'ru' ? 'Горы и природа' : 'Mountains & Nature',
+                entertainment: lang === 'ru' ? 'Развлечения и шопинг' : 'Entertainment & Shopping',
+                spa: lang === 'ru' ? 'SPA и Wellness' : 'SPA & Wellness'
+            };
+
+            const categoryColors = {
+                restaurants: '#8ac4e4',
+                historical: '#7ab8dc',
+                parks: '#7ab8dc',
+                nature: '#8ac4e4',
+                entertainment: '#5a98bc',
+                spa: '#7ab8dc'
+            };
+
+            const categoryEmojis = {
+                restaurants: '🍽️',
+                historical: '🏛️',
+                parks: '🌳',
+                nature: '🏔️',
+                entertainment: '🎭',
+                spa: '💆'
+            };
+
+            const placesLabel = lang === 'ru' ? 'мест' : 'places';
+
+            Object.keys(grouped).forEach(function(cat) {
+                const items = grouped[cat];
+
+                html += '<div style="grid-column: 1/-1; margin-bottom: 4px; margin-top: 8px;">' +
+                    '<div style="display: flex; align-items: center; gap: 16px;">' +
+                    '<span style="font-size: 1.2rem;">' + (categoryEmojis[cat] || '📍') + '</span>' +
+                    '<h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; color: ' + (categoryColors[cat] || '#7ab8dc') + ';">' +
+                    (categoryNames[cat] || cat) + '</h3>' +
+                    '<div style="flex: 1; height: 1px; background: linear-gradient(to right, ' + (categoryColors[cat] || '#7ab8dc') + ', transparent);"></div>' +
+                    '<span style="font-size: 0.875rem; color: var(--text-variant);">' + items.length + ' ' + placesLabel + '</span>' +
+                    '</div></div>';
+
+                items.forEach(function(attraction) {
+                    const tagColor = categoryColors[attraction.category] || '#7ab8dc';
+                    const title = escapeHtml(attraction.title);
+                    const tag = escapeHtml(lang === 'ru' ? attraction.tagRu : attraction.tag);
+                    const desc = escapeHtml(lang === 'ru' ? attraction.descRu : attraction.desc);
+                    const visitText = lang === 'ru' ? 'Посетить' : 'Visit';
+                    const waText = encodeURIComponent('Hello! I want to visit ' + attraction.title);
+
+                    html += '<div class="tilt-card attraction-card">' +
+                        '<div class="attraction-card-image">' +
+                        '<img src="' + attraction.img + '" alt="' + title + '" loading="lazy" />' +
+                        '<span class="attraction-card-tag" style="background: ' + tagColor + ';">' + tag + '</span>' +
+                        '<div class="attraction-card-rating"><span class="material-symbols-outlined">star</span>' + attraction.rating + '</div>' +
+                        '</div>' +
+                        '<div class="attraction-card-content">' +
+                        '<h3 class="attraction-card-title">' + title + '</h3>' +
+                        '<p class="attraction-card-desc">' + desc + '</p>' +
+                        '<div class="attraction-card-footer">' +
+                        '<span style="font-size: 0.8125rem; color: var(--text-variant);"><span class="material-symbols-outlined" style="font-size: 14px; color: #7ab8dc; font-variation-settings: \'FILL\' 1;">star</span> ' + attraction.rating + ' ★ (' + attraction.reviews + ')</span>' +
+                        '<a href="https://wa.me/77479112606?text=' + waText + '" target="_blank" rel="noopener" class="attraction-card-link"><span>' + visitText + '</span><span class="material-symbols-outlined">arrow_forward</span></a>' +
+                        '</div></div></div>';
+                });
+            });
+
+            grid.innerHTML = html;
+        }
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                renderAttractions(this.dataset.filter);
+            });
+        });
+
+        // Перерисовка при смене языка
+        document.addEventListener('languageChanged', function() {
+            const activeFilter = document.querySelector('.filter-btn.active');
+            const filter = activeFilter ? activeFilter.dataset.filter : 'all';
+            renderAttractions(filter);
+        });
+
+        // ===== ПЕРВЫЙ РЕНДЕР =====
+        renderAttractions('all');
+    </script>
+
+</body>
+</html>

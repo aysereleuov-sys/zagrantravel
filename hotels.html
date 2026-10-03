@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1a2b" media="(prefers-color-scheme: dark)" />
+    <title>ZagranEasy Travel | Премиальные отели и проживание</title>
+    <meta name="description" content="Выберите идеальный отель для вашего премиального тура по Алматы. Business и VIP категории: Hilton, Ritz-Carlton, Rahat Palace и другие" />
+    <link rel="canonical" href="https://zagrantours.com/hotels.html" />
+    <meta property="og:title" content="ZagranEasy Travel | Премиальные отели" />
+    <meta property="og:description" content="Роскошное проживание в лучших отелях Алматы для вашего незабываемого путешествия" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* ===== УНИКАЛЬНЫЕ СТИЛИ hotels.html ===== */
+
+        body { background: #ffffff; }
+        html.dark body { background: #0f1a2b; }
+
+        /* ===== УНИКАЛЬНАЯ СЕТКА ОТЕЛЕЙ ===== */
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        /* ===== УНИКАЛЬНАЯ СЕТКА TIER-КАРТОЧЕК ===== */
+        .tier-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            padding: 0 var(--container-padding);
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 1024px) {
+            .tier-cards-grid { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+        }
+        @media (max-width: 480px) {
+            .hotels-grid { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar" role="banner">
+        <div class="navbar-inner">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" />
+            </a>
+            <nav class="nav-links" role="menubar">
+                <a href="index.html" class="nav-link" role="menuitem" data-en="Home" data-ru="Главная">Главная</a>
+                <a href="hotels.html" class="nav-link active" role="menuitem" data-en="Hotels" data-ru="Отели">Отели</a>
+                <a href="routes.html" class="nav-link" role="menuitem" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                <a href="attractions.html" class="nav-link" role="menuitem" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                <a href="about.html" class="nav-link" role="menuitem" data-en="About" data-ru="О нас">О нас</a>
+                <button class="nav-link nav-cta" onclick="openModal()" role="menuitem" data-en="Book a Tour" data-ru="Забронировать тур">Забронировать тур</button>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')" aria-label="Переключить на русский">RU</button>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+        <div class="mobile-menu-inner">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo">
+                    <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" style="height: 36px; width: auto;" />
+                </a>
+                <button class="mobile-close" id="mobileClose" aria-label="Close menu">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="mobile-menu-links">
+                <a href="index.html" class="mobile-link" data-en="Home" data-ru="Главная">Главная</a>
+                <a href="hotels.html" class="mobile-link active" data-en="Hotels" data-ru="Отели">Отели</a>
+                <a href="routes.html" class="mobile-link" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                <a href="attractions.html" class="mobile-link" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                <a href="about.html" class="mobile-link" data-en="About" data-ru="О нас">О нас</a>
+                <button class="mobile-link mobile-cta" onclick="openModal(); toggleMenu();" data-en="Book a Tour" data-ru="Забронировать тур">Забронировать тур</button>
+            </nav>
+            <div class="mobile-menu-footer">
+                <p class="mobile-contact">info@zagrantours.com</p>
+                <p class="mobile-contact">+7 727 123 4567</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 data-en="Book Your Premium Tour" data-ru="Забронируйте премиальный тур">Забронируйте премиальный тур</h2>
+            <p data-en="Fill in the details and our team will craft the perfect itinerary for you" data-ru="Заполните данные, и наша команда создаст идеальный маршрут для вас">
+                Заполните данные, и наша команда создаст идеальный маршрут для вас
+            </p>
+            <form id="requestForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="guestName" data-en="Full Name" data-ru="Ваше имя">Ваше имя</label>
+                    <input type="text" id="guestName" placeholder="Как вас зовут?" autocomplete="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="guestPhone" data-en="Phone Number" data-ru="Номер телефона">Номер телефона</label>
+                    <input type="tel" id="guestPhone" placeholder="+7 777 123 4567" autocomplete="tel" inputmode="tel" required />
+                </div>
+                <div class="form-group">
+                    <label for="guestDate" data-en="Preferred Travel Date" data-ru="Дата путешествия">Дата путешествия</label>
+                    <input type="date" id="guestDate" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit" data-en="Send Request" data-ru="Отправить заявку">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <video src="https://res.cloudinary.com/rmytndxw/video/upload/v1786644980/hotels.mp4" autoplay muted playsinline webkit-playsinline preload="metadata" poster="" class="hero-video" id="heroVideo"></video>
+        </div>
+
+        <div class="container hero-content">
+            <span class="hero-badge" data-en="Luxury Stays" data-ru="Роскошное проживание">Роскошное проживание</span>
+            <h1 class="hero-title">
+                <span class="hero-title-line" data-en="Experience" data-ru="Ощутите">Ощутите</span>
+                <span class="hero-title-line"><span class="text-gradient" data-en="Unmatched Comfort" data-ru="непревзойдённый комфорт">непревзойдённый комфорт</span></span>
+            </h1>
+            <p class="hero-subtitle" data-en="Choose the perfect hotel for your premium journey in Almaty. From business class to exclusive VIP — we take care of every aspect of your stay" data-ru="Выберите идеальный отель для вашего премиального путешествия по Алматы. От бизнес-класса до эксклюзивного VIP — мы позаботимся о каждом аспекте вашего проживания">
+                Выберите идеальный отель для вашего премиального путешествия по Алматы. От бизнес-класса до эксклюзивного VIP — мы позаботимся о каждом аспекте вашего проживания
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="document.getElementById('hotels').scrollIntoView({ behavior: 'smooth' });">
+                    <span data-en="Explore Hotels" data-ru="Выбрать отель">Выбрать отель</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <button class="btn btn-secondary btn-plan-trip" onclick="openModal()" data-en="Plan Your Stay" data-ru="Запланировать проживание">Запланировать проживание</button>
+                <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="btn-whatsapp">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span data-en="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <div class="filters-bar" id="filtersBar">
+        <div class="filters-inner">
+            <button class="filter-btn active" data-filter="all" data-en="All Hotels" data-ru="Все отели">Все отели</button>
+            <button class="filter-btn" data-filter="5" data-en="5★" data-ru="5★">5★</button>
+            <button class="filter-btn" data-filter="4" data-en="4★" data-ru="4★">4★</button>
+            <button class="filter-btn" data-filter="3" data-en="3★" data-ru="3★">3★</button>
+
+            <div class="filter-search">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="hotelSearch" data-en-placeholder="Search hotels..." data-ru-placeholder="Поиск отелей..." placeholder="Поиск отелей..." inputmode="search" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+
+    <!-- HOTELS GRID -->
+    <section class="container" id="hotels" style="scroll-margin-top: 100px;">
+        <div class="section-header">
+            <span class="section-tag" data-en="Accommodations" data-ru="Проживание">Проживание</span>
+            <h2 class="section-title" data-en="The Finest Stays in" data-ru="Лучшие отели в">
+                Лучшие отели в <span class="text-gradient" data-en="Almaty" data-ru="Алматы">Алматы</span>
+            </h2>
+            <p class="section-description" data-en="46 carefully selected hotels in 3 categories — each offering a unique combination of comfort and authentic Kazakh hospitality." data-ru="46 тщательно проверенных отелей в 3 категориях — каждый сочетает комфорт и подлинное казахское гостеприимство.">
+                46 тщательно проверенных отелей в 3 категориях — каждый сочетает комфорт и подлинное казахское гостеприимство.
+            </p>
+        </div>
+
+        <div class="hotels-grid" id="hotelsGrid"></div>
+    </section>
+
+    <!-- TIER CARDS: BUSINESS / VIP -->
+    <section class="comparison-section container" id="comparison" style="scroll-margin-top: 100px;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="Service Categories" data-ru="Категории обслуживания">Категории обслуживания</span>
+            <h2 class="section-title" data-en="Choose Your" data-ru="Выберите уровень">
+                Выберите уровень <span class="text-gradient" data-en="Comfort" data-ru="комфорта">комфорта</span>
+            </h2>
+            <p class="section-description" style="margin: 0 auto;" data-en="BUSINESS and VIP — for any request and audience." data-ru="BUSINESS и VIP — под любой запрос и аудиторию.">
+                BUSINESS и VIP — под любой запрос и аудиторию.
+            </p>
+        </div>
+
+        <div class="tier-cards-grid">
+            <!-- BUSINESS -->
+            <article class="tier-card tilt-card">
+                <div class="tier-card-image">
+                    <span class="tier-card-badge">Business</span>
+                    <img src="https://res.cloudinary.com/kvhliyqb/image/upload/v1784743772/DoubleTree_Hotel_afubua.jpg" alt="Business-class hotel in Almaty" loading="lazy" />
+                    <div class="tier-card-title-block">
+                        <div class="tier-name">BUSINESS</div>
+                    </div>
+                </div>
+                <div class="tier-card-body">
+                    <p class="tier-card-desc" data-en="Comfort for business trips, families and corporate clients" data-ru="Комфорт для деловых поездок, семей и корпоративных клиентов">
+                        Комфорт для деловых поездок, семей и корпоративных клиентов
+                    </p>
+                    <ul class="tier-card-features">
+                        <li><span class="material-symbols-outlined">directions_car</span><span data-en="Private transfer" data-ru="Private transfer">Private transfer</span></li>
+                        <li><span class="material-symbols-outlined">person</span><span data-en="Personal guide" data-ru="Персональный гид">Персональный гид</span></li>
+                        <li><span class="material-symbols-outlined">tune</span><span data-en="Flexible itinerary" data-ru="Гибкий маршрут">Гибкий маршрут</span></li>
+                        <li><span class="material-symbols-outlined">apartment</span><span data-en="Business-class hotels (Hilton, DoubleTree, Novotel)" data-ru="Отели бизнес-класса (Hilton, DoubleTree, Novotel)">Отели бизнес-класса (Hilton, DoubleTree, Novotel)</span></li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openModal()" data-en="Learn More" data-ru="Подробнее">Подробнее</button>
+                </div>
+            </article>
+
+            <!-- VIP -->
+            <article class="tier-card tilt-card">
+                <div class="tier-card-image">
+                    <span class="tier-card-badge vip">VIP</span>
+                    <img src="https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Ritz-Carlton_cw8tfs.jpg" alt="VIP hotel — Ritz-Carlton Almaty" loading="lazy" />
+                    <div class="tier-card-title-block">
+                        <div class="tier-name">VIP</div>
+                    </div>
+                </div>
+                <div class="tier-card-body">
+                    <p class="tier-card-desc" data-en="Individual journey for guests who value maximum comfort" data-ru="Индивидуальное путешествие для гостей, которым важен максимальный комфорт">
+                        Индивидуальное путешествие для гостей, которым важен максимальный комфорт
+                    </p>
+                    <ul class="tier-card-features">
+                        <li><span class="material-symbols-outlined">star</span><span data-en="Ritz-Carlton, Rahat Palace, Royal Tulip" data-ru="Ritz-Carlton, Rahat Palace, Royal Tulip">Ritz-Carlton, Rahat Palace, Royal Tulip</span></li>
+                        <li><span class="material-symbols-outlined">directions_car</span><span data-en="Premium-class cars &amp; VIP transfer" data-ru="Автомобили премиум-класса и VIP-трансфер">Автомобили премиум-класса и VIP-трансфер</span></li>
+                        <li><span class="material-symbols-outlined">photo_camera</span><span data-en="Private photographer &amp; video" data-ru="Личный фотограф и видеосъёмка">Личный фотограф и видеосъёмка</span></li>
+                        <li><span class="material-symbols-outlined">flight_takeoff</span><span data-en="Helicopter tours &amp; exclusive experiences" data-ru="Вертолётные экскурсии и эксклюзивный опыт">Вертолётные экскурсии и эксклюзивный опыт</span></li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openModal()" data-en="Learn More" data-ru="Подробнее">Подробнее</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- BOOKING CTA -->
+    <section class="container" id="booking" style="scroll-margin-top: 100px;">
+        <div class="booking-cta">
+            <div class="booking-cta-content">
+                <span class="section-tag" data-en="Ready to Book?" data-ru="Готовы забронировать?">Готовы забронировать?</span>
+                <h2 class="section-title" data-en="Your Perfect Stay" data-ru="Ваш идеальный отдых">
+                    Ваш идеальный отдых <span style="color: #ffffff;" data-en="Awaits" data-ru="ждёт вас">ждёт вас</span>
+                </h2>
+                <p class="section-description" data-en="Let us take care of every detail — from room selection to exclusive upgrades." data-ru="Позвольте нам позаботиться о каждой детали — от выбора номера до эксклюзивных улучшений.">
+                    Позвольте нам позаботиться о каждой детали — от выбора номера до эксклюзивных улучшений.
+                </p>
+            </div>
+            <button class="btn btn-primary" onclick="openModal()">
+                <span data-en="Request Booking" data-ru="Запросить бронирование">Запросить бронирование</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- INCLUSIONS -->
+    <section class="container" id="inclusions" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="What's Included" data-ru="Что входит в стоимость">Что входит в стоимость</span>
+            <h2 class="section-title">
+                <span data-en="Included" data-ru="Включено">Включено</span>
+                <span class="text-gradient" data-en="&amp; Excluded" data-ru="и не включено">&amp; не включено</span>
+            </h2>
+        </div>
+
+        <div class="inc-grid">
+            <div class="inc-card included">
+                <div class="inc-card-title">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span data-en="Included" data-ru="Входит в стоимость">Входит в стоимость</span>
+                </div>
+                <ul>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Accommodation" data-ru="Проживание">Проживание</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Breakfasts" data-ru="Завтраки">Завтраки</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Transfers" data-ru="Трансфер">Трансфер</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Guide" data-ru="Гид">Гид</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Tour escort" data-ru="Сопровождение">Сопровождение</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Drinking water" data-ru="Питьевая вода">Питьевая вода</span></li>
+                    <li><span class="material-symbols-outlined">check</span><span data-en="Route organization" data-ru="Организация маршрута">Организация маршрута</span></li>
+                </ul>
+            </div>
+
+            <div class="inc-card excluded">
+                <div class="inc-card-title">
+                    <span class="material-symbols-outlined">cancel</span>
+                    <span data-en="Not Included" data-ru="Не входит в стоимость">Не входит в стоимость</span>
+                </div>
+                <ul>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Flights" data-ru="Авиабилеты">Авиабилеты</span></li>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Personal expenses" data-ru="Личные расходы">Личные расходы</span></li>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Insurance" data-ru="Страховка">Страховка</span></li>
+                    <li><span class="material-symbols-outlined">close</span><span data-en="Additional services" data-ru="Дополнительные услуги">Дополнительные услуги</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq container" id="faq" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="section-header center">
+            <span class="section-tag" data-en="FAQ" data-ru="Вопросы и ответы">Вопросы и ответы</span>
+            <h2 class="section-title" data-en="Frequently Asked" data-ru="Часто задаваемые">
+                Часто задаваемые <span class="text-gradient" data-en="Questions" data-ru="вопросы">вопросы</span>
+            </h2>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="How do I choose the right hotel?" data-ru="Как выбрать подходящий отель?">Как выбрать подходящий отель?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Use the 5★ / 4★ / 3★ filters or the search bar. Our team can also help you select a hotel based on your travel style" data-ru="Используйте фильтры 5★ / 4★ / 3★ или поиск. Наша команда также поможет подобрать отель под ваш стиль путешествия">
+                    Используйте фильтры 5★ / 4★ / 3★ или поиск. Наша команда также поможет подобрать отель под ваш стиль путешествия.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="Are meals included?" data-ru="Включено ли питание?">Включено ли питание?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Breakfasts are included in the tour price. Lunches and dinners can be added as additional services" data-ru="Завтраки включены в стоимость тура. Обеды и ужины можно добавить как дополнительные услуги">
+                    Завтраки включены в стоимость тура. Обеды и ужины можно добавить как дополнительные услуги.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="Can I upgrade my room?" data-ru="Можно ли улучшить номер?">Можно ли улучшить номер?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="Yes — we can arrange upgrades (suite, panoramic view, executive floor) at partner hotels" data-ru="Да — мы организуем улучшения (люкс, панорамный вид, executive-этаж) в отелях-партнёрах">
+                    Да — мы организуем улучшения (люкс, панорамный вид, executive-этаж) в отелях-партнёрах.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span data-en="Is early check-in possible?" data-ru="Возможен ли ранний заезд?">Возможен ли ранний заезд?</span>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer" data-en="We coordinate early check-in and late check-out with hotels. Availability depends on the dates" data-ru="Мы согласовываем ранний заезд и поздний выезд с отелями. Доступность зависит от дат">
+                    Мы согласовываем ранний заезд и поздний выезд с отелями. Доступность зависит от дат
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section container" id="contact" style="scroll-margin-top: 100px; padding: var(--section-spacing) 0;">
+        <div class="cta-wrapper">
+            <div class="cta-content">
+                <span class="section-tag" data-en="Start Your Journey" data-ru="Начните своё путешествие">Начните своё путешествие</span>
+                <h2 class="section-title" data-en="Ready to Explore" data-ru="Готовы исследовать">
+                    Готовы исследовать <span style="color: #ffffff;" data-en="Kazakhstan?" data-ru="Казахстан?">Казахстан?</span>
+                </h2>
+                <p class="section-description" data-en="We'll craft your perfect journey and take care of every detail" data-ru="Мы создадим ваше идеальное путешествие и позаботимся о каждой детали">
+                    Мы создадим ваше идеальное путешествие и позаботимся о каждой детали
+                </p>
+            </div>
+            <div class="cta-actions">
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span data-en="Plan Your Journey" data-ru="Запланировать путешествие">Запланировать путешествие</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="btn btn-whatsapp">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span data-en="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://res.cloudinary.com/k311aral/image/upload/v1789147424/logo.png" alt="ZagranEasy Travel" />
+                    </a>
+                    <p class="footer-description" data-en="Premium author's tours in Almaty and Almaty region" data-ru="Премиальные авторские путешествия по Алматы и Алматинской области">
+                        Премиальные авторские путешествия по Алматы и Алматинской области.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Instagram">Instagram</a>
+                        <a href="#" class="social-link" aria-label="Facebook">Facebook</a>
+                        <a href="#" class="social-link" aria-label="YouTube">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-en="Explore" data-ru="Исследовать">Исследовать</h4>
+                        <a href="hotels.html" data-en="Hotels" data-ru="Отели">Отели</a>
+                        <a href="routes.html" data-en="Routes" data-ru="Маршруты">Маршруты</a>
+                        <a href="attractions.html" data-en="Attractions" data-ru="Достопримечательности">Достопримечательности</a>
+                        <a href="about.html" data-en="About" data-ru="О нас">О нас</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-en="Support" data-ru="Поддержка">Поддержка</h4>
+                        <a href="#" data-en="Contact" data-ru="Контакты">Контакты</a>
+                        <a href="#" data-en="FAQ" data-ru="Вопросы и ответы">Вопросы и ответы</a>
+                        <a href="#" data-en="Sustainability" data-ru="Устойчивость">Устойчивость</a>
+                        <a href="#" data-en="Careers" data-ru="Карьера">Карьера</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-en="Legal" data-ru="Юридическая информация">Юридическая информация</h4>
+                        <a href="#" data-en="Privacy Policy" data-ru="Политика конфиденциальности">Политика конфиденциальности</a>
+                        <a href="#" data-en="Terms of Service" data-ru="Условия использования">Условия использования</a>
+                        <a href="#" data-en="Cookie Policy" data-ru="Политика использования cookie">Политика использования cookie</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZagranEasy Travel. All rights reserved.</p>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <span data-en="Crafted with precision in Almaty" data-ru="Сделано с душой в Алматы">Сделано с душой в Алматы</span>
+                    <a href="https://wa.me/77479112606" target="_blank" rel="noopener" class="footer-whatsapp">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">chat</span>
+                        +7 747 911 2606
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+    <script>
+        // ===== ДАННЫЕ ОТЕЛЕЙ =====
+        const hotelsData = {
+            5: [
+                { name: "Ritz-Carlton", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Ritz-Carlton_cw8tfs.jpg", location: "City Center", locationRu: "Центр города", rating: "5.0", desc: "World-class luxury with panoramic city views and impeccable service.", descRu: "Роскошь мирового класса с панорамным видом на город и безупречным сервисом.", amenities: ["SPA", "Restaurant", "Concierge", "Infinity Pool"], amenitiesRu: ["СПА", "Ресторан", "Консьерж", "Инфинити-бассейн"] },
+                { name: "InterContinental", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743775/InterContinental_mpsakm.jpg", location: "Business Center", locationRu: "Деловой центр", rating: "4.9", desc: "Elegant hotel in the heart of Almaty's business district.", descRu: "Элегантный отель в самом сердце делового района Алматы.", amenities: ["Business Center", "Executive Lounge", "Restaurant"], amenitiesRu: ["Бизнес-центр", "Бизнес-зал", "Ресторан"] },
+                { name: "Rahat Palace", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Rahat_Palace_t87jqc.jpg", location: "City Center", locationRu: "Центр города", rating: "4.8", desc: "A legendary hotel with exquisite interiors and unparalleled hospitality.", descRu: "Легендарный отель с изысканными интерьерами и непревзойдённым гостеприимством.", amenities: ["SPA", "Pool", "Restaurant", "Concierge"], amenitiesRu: ["СПА", "Бассейн", "Ресторан", "Консьерж"] },
+                { name: "Dostyk", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743773/Dostyk_Hotel_zgpld7.jpg", location: "City Center", locationRu: "Центр города", rating: "4.8", desc: "A renowned hotel blending modern luxury with Kazakh elegance.", descRu: "Знаменитый отель, сочетающий современную роскошь и казахскую элегантность.", amenities: ["SPA", "Restaurant", "Concierge"], amenitiesRu: ["СПА", "Ресторан", "Консьерж"] },
+                { name: "Swissôtel Alatau", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743778/Swiss%C3%B4tel_Alatau_Hotel_f9dhbl.jpg", location: "Business Center", locationRu: "Деловой центр", rating: "4.9", desc: "Swiss precision meets Kazakh hospitality in a luxury hotel.", descRu: "Швейцарская точность встречает казахское гостеприимство в роскошном отеле.", amenities: ["SPA", "Fitness", "Executive Lounge"], amenitiesRu: ["СПА", "Фитнес", "Бизнес-зал"] },
+                { name: "Royal Tulip", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743777/Royal_Tulip_lmpojg.jpg", location: "City Center", locationRu: "Центр города", rating: "4.7", desc: "An exclusive boutique hotel with personalized service.", descRu: "Эксклюзивный бутик-отель с персонализированным обслуживанием.", amenities: ["Boutique Hotel", "SPA", "Restaurant"], amenitiesRu: ["Бутик-отель", "СПА", "Ресторан"] },
+                { name: "Rixos", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Rixos_Hotel_iwzlym.jpg", location: "City Center", locationRu: "Центр города", rating: "4.9", desc: "All-inclusive luxury resort with a spa and restaurants.", descRu: "Всё включено: роскошный курорт со спа-центром и ресторанами.", amenities: ["All Inclusive", "SPA", "Pool", "Kids Club"], amenitiesRu: ["Всё включено", "СПА", "Бассейн", "Детский клуб"] },
+                { name: "DoubleTree", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743772/DoubleTree_Hotel_afubua.jpg", location: "City Center", locationRu: "Центр города", rating: "4.6", desc: "Modern comfort with a signature warm welcome and great amenities.", descRu: "Современный комфорт с фирменным тёплым приёмом и отличными удобствами.", amenities: ["Fitness", "Restaurant", "Business Center"], amenitiesRu: ["Фитнес", "Ресторан", "Бизнес-центр"] },
+                { name: "Radisson Airport", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Radisson_Airport_Hotel_utpxxw.jpg", location: "Airport", locationRu: "Аэропорт", rating: "4.5", desc: "Convenient airport hotel with premium business services.", descRu: "Удобный отель рядом с аэропортом с премиальными бизнес-услугами.", amenities: ["Business Center", "Restaurant", "Transfer"], amenitiesRu: ["Бизнес-центр", "Ресторан", "Трансфер"] },
+                { name: "Donatello Boutique", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743771/Donatello_Premium_Hotel_ikrhvj.jpg", location: "City Center", locationRu: "Центр города", rating: "4.7", desc: "Boutique luxury in Italian style with personalized service.", descRu: "Бутик-роскошь в итальянском стиле с персонализированным сервисом.", amenities: ["Boutique Hotel", "SPA", "Restaurant"], amenitiesRu: ["Бутик-отель", "СПА", "Ресторан"] },
+                { name: "Tenir Eco Hotel", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743778/Tenir_Eco_Hotel_ylfu4a.jpg", location: "Mountains", locationRu: "Горы", rating: "4.8", desc: "Eco-luxury surrounded by nature with sustainable amenities.", descRu: "Эко-роскошь в окружении природы с экологичными удобствами.", amenities: ["Eco Hotel", "Mountain View", "SPA"], amenitiesRu: ["Эко-отель", "Горный вид", "СПА"] }
+            ],
+            4: [
+                { name: "Mercure", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743770/Mercure_Hotel_g11cgt.jpg", location: "City Center", locationRu: "Центр города", rating: "4.6", desc: "Modern comfort with French charm in the center of Almaty.", descRu: "Современный комфорт с французским шармом в центре Алматы.", amenities: ["Restaurant", "Fitness", "Business Center"], amenitiesRu: ["Ресторан", "Фитнес", "Бизнес-центр"] },
+                { name: "Best Western", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743772/Best_Western_Hotel_xmd0up.jpg", location: "City Center", locationRu: "Центр города", rating: "4.5", desc: "Reliable comfort with modern amenities and great service.", descRu: "Надёжный комфорт с современными удобствами и отличным сервисом.", amenities: ["Fitness", "Restaurant", "Parking"], amenitiesRu: ["Фитнес", "Ресторан", "Парковка"] },
+                { name: "Plaza", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Plaza_Hotel_voax3q.jpg", location: "City Center", locationRu: "Центр города", rating: "4.6", desc: "Classic elegance in the city center with spacious rooms.", descRu: "Классическая элегантность в центре города с просторными номерами.", amenities: ["Restaurant", "Concierge", "Event Hall"], amenitiesRu: ["Ресторан", "Консьерж", "Зал для мероприятий"] },
+                { name: "Park Dedeman", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743773/Park_Dedeman_Hotel_ysz1pv.webp", location: "Business Center", locationRu: "Деловой центр", rating: "4.7", desc: "A hotel with the perfect blend of business and leisure.", descRu: "Отель с идеальным сочетанием бизнеса и отдыха.", amenities: ["Business Center", "SPA", "Pool", "Executive Lounge"], amenitiesRu: ["Бизнес-центр", "СПА", "Бассейн", "Бизнес-зал"] },
+                { name: "Kazakhstan Hotel", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743770/Kazakhstan_Hotel_sgilyq.jpg", location: "City Center", locationRu: "Центр города", rating: "4.5", desc: "Famous high-rise hotel with breathtaking views and comfort.", descRu: "Знаменитый высотный отель с захватывающим видом и комфортом.", amenities: ["Panoramic View", "Restaurant", "Fitness"], amenitiesRu: ["Панорамный вид", "Ресторан", "Фитнес"] },
+                { name: "Novotel", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743772/Novotel_Hotel_nsaw9j.jpg", location: "City Center", locationRu: "Центр города", rating: "4.5", desc: "Modern design with spacious rooms and family-friendly amenities.", descRu: "Современный дизайн с просторными номерами и семейными удобствами.", amenities: ["Family Rooms", "Fitness", "Restaurant"], amenitiesRu: ["Семейные номера", "Фитнес", "Ресторан"] },
+                { name: "Novotel Living", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743772/Novotel_Living_Hotel_npperk.jpg", location: "City Center", locationRu: "Центр города", rating: "4.4", desc: "Comfort for long stays with apartments and amenities.", descRu: "Комфорт для длительного проживания с апартаментами и удобствами.", amenities: ["Apartments", "Kitchen", "Fitness"], amenitiesRu: ["Апартаменты", "Кухня", "Фитнес"] },
+                { name: "Ramada", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743775/Ramada_Hotel_mndiow.jpg", location: "City Center", locationRu: "Центр города", rating: "4.4", desc: "Global hospitality with a local touch and comfortable rooms.", descRu: "Мировое гостеприимство с местным колоритом и комфортными номерами.", amenities: ["Business Center", "Restaurant", "Bar"], amenitiesRu: ["Бизнес-центр", "Ресторан", "Бар"] },
+                { name: "Renion Park", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Renion_Park_Hotel_muduzj.jpg", location: "City Center", locationRu: "Центр города", rating: "4.3", desc: "Cozy hotel near the park with modern rooms and great cuisine.", descRu: "Уют у парка с современными номерами и отличной кухней.", amenities: ["Restaurant", "Park View", "Fitness"], amenitiesRu: ["Ресторан", "Вид на парк", "Фитнес"] },
+                { name: "Grand Voyage", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743775/Grand_Voyage_Hotel_efz1xg.jpg", location: "City Center", locationRu: "Центр города", rating: "4.4", desc: "Travel-inspired design with elegant rooms and amenities.", descRu: "Дизайн в стиле путешествий с элегантными номерами и удобствами.", amenities: ["SPA", "Restaurant", "Bar"], amenitiesRu: ["СПА", "Ресторан", "Бар"] },
+                { name: "Otrar", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743772/Otrar_Hotel_fl8oas.jpg", location: "City Center", locationRu: "Центр города", rating: "4.2", desc: "A historic hotel named after the ancient Silk Road city.", descRu: "Исторический отель, названный в честь древнего города Шёлкового пути.", amenities: ["Restaurant", "Bar", "Wi-Fi"], amenitiesRu: ["Ресторан", "Бар", "Wi-Fi"] },
+                { name: "Sadu", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743777/Sadu_Hotel_sikxbt.jpg", location: "City Center", locationRu: "Центр города", rating: "4.3", desc: "A boutique hotel with traditional Kazakh design and modern luxury.", descRu: "Бутик-отель с традиционным казахским дизайном и современной роскошью.", amenities: ["Boutique Hotel", "Restaurant", "SPA"], amenitiesRu: ["Бутик-отель", "Ресторан", "СПА"] },
+                { name: "Grand Erbil", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Grand_Erbil_Hotel_k7acix.jpg", location: "City Center", locationRu: "Центр города", rating: "4.3", desc: "International standards with oriental hospitality and amenities.", descRu: "Международный стандарт с восточным гостеприимством и удобствами.", amenities: ["Business Center", "Restaurant", "Pool"], amenitiesRu: ["Бизнес-центр", "Ресторан", "Бассейн"] },
+                { name: "Shera Inn", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743777/Shera_Inn_Hotel_d8iray.jpg", location: "City Center", locationRu: "Центр города", rating: "4.2", desc: "A cozy hotel with personalized service and a convenient location.", descRu: "Уютный отель с персонализированным сервисом и удобным расположением.", amenities: ["Restaurant", "Wi-Fi", "Parking"], amenitiesRu: ["Ресторан", "Wi-Fi", "Парковка"] },
+                { name: "Resident City", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Resident_City_Hotel_wmbdyx.jpg", location: "City Center", locationRu: "Центр города", rating: "4.3", desc: "An apart-hotel for long stays in the city center.", descRu: "Апарт-отель для длительного проживания в центре города.", amenities: ["Apartments", "Kitchen", "Fitness"], amenitiesRu: ["Апартаменты", "Кухня", "Фитнес"] },
+                { name: "Saraishyq", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743777/Saraishyq_Hotel_fbdc0h.jpg", location: "City Center", locationRu: "Центр города", rating: "4.4", desc: "A charming boutique hotel reflecting the rich heritage of Kazakh culture.", descRu: "Очаровательный бутик-отель, отражающий богатое наследие казахской культуры.", amenities: ["Boutique Hotel", "Restaurant", "Traditions"], amenitiesRu: ["Бутик-отель", "Ресторан", "Традиции"] }
+            ],
+            3: [
+                { name: "Alma", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743771/Alma_Hotel_jyykkd.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "A warm and cozy hotel with excellent value for money.", descRu: "Тёплый и уютный отель с отличным соотношением цены и качества.", amenities: ["Restaurant", "Wi-Fi", "Parking"], amenitiesRu: ["Ресторан", "Wi-Fi", "Парковка"] },
+                { name: "Ambassador", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743770/Ambassador_Hotel_lwjv0e.jpg", location: "City Center", locationRu: "Центр города", rating: "4.1", desc: "Diplomatic style with comfortable rooms and excellent service.", descRu: "Дипломатический стиль с комфортными номерами и отличным сервисом.", amenities: ["Business Center", "Restaurant", "Bar"], amenitiesRu: ["Бизнес-центр", "Ресторан", "Бар"] },
+                { name: "Astana Intl", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743770/Astana_Intl_Hotels_n0qsnz.webp", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "Affordable comfort near business centers and attractions.", descRu: "Доступный комфорт рядом с деловыми центрами и достопримечательностями.", amenities: ["Business Center", "Restaurant", "Wi-Fi"], amenitiesRu: ["Бизнес-центр", "Ресторан", "Wi-Fi"] },
+                { name: "Regardal", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743775/Regardal_Hotel_pupxcp.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "A cozy hotel with warm hospitality and comfortable rooms.", descRu: "Уютный отель с тёплым гостеприимством и комфортными номерами.", amenities: ["Restaurant", "Wi-Fi", "Parking"], amenitiesRu: ["Ресторан", "Wi-Fi", "Парковка"] },
+                { name: "Renion", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Renion_Hotel_inxcw0.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "Reliable comfort with modern amenities and friendly service.", descRu: "Надёжный комфорт с современными удобствами и дружелюбным сервисом.", amenities: ["Fitness", "Restaurant", "Wi-Fi"], amenitiesRu: ["Фитнес", "Ресторан", "Wi-Fi"] },
+                { name: "Renion Hills", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743776/Renion_Hills_Hotel_uc8ogv.jpg", location: "Mountains", locationRu: "Горы", rating: "4.1", desc: "A mountain hotel with picturesque views and comfortable rooms.", descRu: "Горный отель с живописными видами и комфортными номерами.", amenities: ["Mountain View", "Restaurant", "Parking"], amenitiesRu: ["Горный вид", "Ресторан", "Парковка"] },
+                { name: "Iris", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743775/Iris_Hotel_rvhbpx.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "A boutique hotel with personalized service in the city center.", descRu: "Бутик-отель с персонализированным сервисом в центре города.", amenities: ["Boutique Hotel", "Restaurant", "Wi-Fi"], amenitiesRu: ["Бутик-отель", "Ресторан", "Wi-Fi"] },
+                { name: "Mildom", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743771/Mildom_Hotel_o0pvw0.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "Comfortable stay with modern amenities and Kazakh hospitality.", descRu: "Комфортное проживание с современными удобствами и казахским гостеприимством.", amenities: ["Fitness", "Restaurant", "Wi-Fi"], amenitiesRu: ["Фитнес", "Ресторан", "Wi-Fi"] },
+                { name: "Salem on Tulebaeva", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743777/Salem_on_Tulebaeva_Hotel_toa034.jpg", location: "City Center", locationRu: "Центр города", rating: "4.1", desc: "A convenient hotel in the center with comfort for all travelers.", descRu: "Удобный отель в центре с комфортом для всех путешественников.", amenities: ["Restaurant", "Wi-Fi", "Parking"], amenitiesRu: ["Ресторан", "Wi-Fi", "Парковка"] },
+                { name: "Voyage", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743778/Voyage_Hotel_h5u8f2.jpg", location: "City Center", locationRu: "Центр города", rating: "3.9", desc: "A hotel for travelers with comfortable rooms and great value.", descRu: "Отель для путешественников с комфортными номерами и отличной ценой.", amenities: ["Restaurant", "Wi-Fi", "Parking"], amenitiesRu: ["Ресторан", "Wi-Fi", "Парковка"] },
+                { name: "Garden Park Inn", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Garden_Park_Inn_Hotel_enhouk.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "A quiet garden hotel with comfortable rooms and friendly service.", descRu: "Спокойный отель в саду с комфортными номерами и дружелюбным сервисом.", amenities: ["Garden View", "Restaurant", "Wi-Fi"], amenitiesRu: ["Вид на сад", "Ресторан", "Wi-Fi"] },
+                { name: "Golden Dragon", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Golden_Dragon_Hotel_o3axbk.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "An Asian-style hotel with comfortable amenities and cultural flair.", descRu: "Отель в азиатском стиле с комфортными удобствами и культурным колоритом.", amenities: ["Asian Cuisine", "Restaurant", "Wi-Fi"], amenitiesRu: ["Азиатская кухня", "Ресторан", "Wi-Fi"] },
+                { name: "Royal Palace", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743777/Royal_Palace_Hotel_lwl4of.jpg", location: "City Center", locationRu: "Центр города", rating: "4.1", desc: "A regal atmosphere with comfortable rooms and attentive service.", descRu: "Королевская атмосфера с комфортными номерами и внимательным сервисом.", amenities: ["Restaurant", "Bar", "Wi-Fi"], amenitiesRu: ["Ресторан", "Бар", "Wi-Fi"] },
+                { name: "Reikartz Sky", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743775/Reikartz_Sky_Hotel_z0ny28.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "A high-rise hotel with panoramic views and modern amenities.", descRu: "Высотный отель с панорамным видом и современными удобствами.", amenities: ["Panoramic View", "Restaurant", "Fitness"], amenitiesRu: ["Панорамный вид", "Ресторан", "Фитнес"] },
+                { name: "Uyut", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743778/Uyut_Hotel_bhlzff.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "Translated from Russian as 'cozy', which you'll find in this charming hotel.", descRu: "В переводе с русского — «уют», что вы и найдёте в этом очаровательном отеле.", amenities: ["Restaurant", "Wi-Fi", "Parking"], amenitiesRu: ["Ресторан", "Wi-Fi", "Парковка"] },
+                { name: "Grand Sapphire", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743774/Grand_Sapphire_Hotel_jkuw1u.jpg", location: "City Center", locationRu: "Центр города", rating: "4.1", desc: "Sapphire elegance with comfortable rooms and quality service.", descRu: "Сапфировая элегантность с комфортными номерами и качественным сервисом.", amenities: ["SPA", "Restaurant", "Wi-Fi"], amenitiesRu: ["СПА", "Ресторан", "Wi-Fi"] },
+                { name: "Grand Aiser", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743773/Grand_Aiser_Hotel_caoyqp.jpg", location: "City Center", locationRu: "Центр города", rating: "4.0", desc: "Great comfort at an affordable price with good amenities.", descRu: "Отличный комфорт по доступной цене с хорошими удобствами.", amenities: ["Restaurant", "Fitness", "Wi-Fi"], amenitiesRu: ["Ресторан", "Фитнес", "Wi-Fi"] },
+                { name: "Montana", img: "https://res.cloudinary.com/kvhliyqb/image/upload/v1784743771/Montana_Hotel_i0xzsf.jpg", location: "Mountains", locationRu: "Горы", rating: "4.0", desc: "A mountain hotel with cozy rooms and warm hospitality.", descRu: "Горный отель с уютными номерами и тёплым гостеприимством.", amenities: ["Mountain View", "Restaurant", "Parking"], amenitiesRu: ["Горный вид", "Ресторан", "Парковка"] }
+            ]
+        };
+
+        // ===== RENDER =====
+        function renderHotels(filter = 'all', search = '') {
+            const grid = document.getElementById('hotelsGrid');
+            const lang = window.currentLang || 'ru';
+            let html = '';
+            let hasResults = false;
+
+            const categories = filter === 'all' ? [5, 4, 3] : [parseInt(filter)];
+            const categoryColors = { 5: '#8ac4e4', 4: '#7ab8dc', 3: '#5a98bc' };
+            const badgeClasses = { 5: 'luxury', 4: 'premium', 3: 'comfort' };
+            const basePrices = { 5: 350, 4: 180, 3: 100 };
+
+            categories.forEach(function(cat) {
+                const hotels = hotelsData[cat] || [];
+                const filtered = hotels.filter(function(h) {
+                    const name = h.name.toLowerCase();
+                    const desc = (lang === 'ru' ? h.descRu : h.desc).toLowerCase();
+                    const location = (lang === 'ru' ? h.locationRu : h.location).toLowerCase();
+                    const s = search.toLowerCase();
+                    return name.includes(s) || desc.includes(s) || location.includes(s);
+                });
+
+                if (filtered.length === 0) return;
+                hasResults = true;
+
+                const catLabel = cat + '★';
+                const hotelsLabel = lang === 'ru' ? 'отелей' : 'hotels';
+
+                html += '<div style="grid-column: 1/-1; margin-bottom: 4px; margin-top: 8px;">' +
+                    '<div style="display: flex; align-items: center; gap: 16px;">' +
+                    '<h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; color: ' + categoryColors[cat] + '; display: flex; align-items: center; gap: 8px;">' +
+                    '<span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: \'FILL\' 1;">star</span>' + catLabel + '</h3>' +
+                    '<div style="flex: 1; height: 1px; background: linear-gradient(to right, ' + categoryColors[cat] + ', transparent);"></div>' +
+                    '<span style="font-size: 0.875rem; color: var(--text-variant);">' + filtered.length + ' ' + hotelsLabel + '</span>' +
+                    '</div></div>';
+
+                filtered.forEach(function(h) {
+                    const badgeClass = badgeClasses[cat];
+                    const price = basePrices[cat];
+                    const hotelLocation = lang === 'ru' ? h.locationRu : h.location;
+                    const hotelDesc = lang === 'ru' ? h.descRu : h.desc;
+                    const hotelAmenities = lang === 'ru' ? h.amenitiesRu : h.amenities;
+                    const bookNow = lang === 'ru' ? 'Забронировать' : 'Book Now';
+                    const perNight = lang === 'ru' ? 'за ночь' : 'per night';
+
+                    html += '<div class="tilt-card hotel-card">' +
+                        '<div class="hotel-card-image">' +
+                        '<img src="' + h.img + '" alt="' + h.name + '" loading="lazy" />' +
+                        '<span class="hotel-card-badge ' + badgeClass + '">' + cat + '★</span>' +
+                        '<div class="hotel-card-rating"><span class="material-symbols-outlined">star</span>' + h.rating + '</div>' +
+                        '</div>' +
+                        '<div class="hotel-card-content">' +
+                        '<h3 class="hotel-card-title">' + h.name + '</h3>' +
+                        '<div class="hotel-card-location"><span class="material-symbols-outlined">location_on</span>' + hotelLocation + ', Almaty</div>' +
+                        '<p class="hotel-card-desc">' + hotelDesc + '</p>' +
+                        '<div class="hotel-card-amenities">' +
+                        hotelAmenities.map(function(a) { return '<span class="hotel-card-amenity">' + a + '</span>'; }).join('') +
+                        '</div>' +
+                        '<div class="hotel-card-footer">' +
+                        '<span class="hotel-card-price">$' + price + ' <small>/ ' + perNight + '</small></span>' +
+                        '<button class="hotel-card-link" onclick="openModal()"><span>' + bookNow + '</span><span class="material-symbols-outlined">arrow_forward</span></button>' +
+                        '</div></div></div>';
+                });
+            });
+
+            if (!hasResults) {
+                const noResults = lang === 'ru' ? 'Отели не найдены' : 'No hotels found';
+                const tryAdjust = lang === 'ru' ? 'Попробуйте изменить поиск или фильтры' : 'Try adjusting your search or filters';
+                html = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 0; color: var(--text-variant);">' +
+                    '<span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px; opacity: 0.3;">hotel</span>' +
+                    '<h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: var(--text-strong);">' + noResults + '</h3>' +
+                    '<p>' + tryAdjust + '</p></div>';
+            }
+
+            grid.innerHTML = html;
+        }
+
+        // ===== ФИЛЬТРЫ =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('hotelSearch');
+        let currentFilter = 'all';
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderHotels(currentFilter, searchInput.value);
+            });
+        });
+
+        let searchTimeout;
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                const val = this.value;
+                searchTimeout = setTimeout(function() {
+                    renderHotels(currentFilter, val);
+                }, 200);
+            });
+        }
+
+        // Перерисовка при смене языка
+        document.addEventListener('languageChanged', function() {
+            renderHotels(currentFilter, searchInput ? searchInput.value : '');
+        });
+
+        // ===== ПЕРВЫЙ РЕНДЕР =====
+        renderHotels('all');
+    </script>
+
+</body>
+</html>
