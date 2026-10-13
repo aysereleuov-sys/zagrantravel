@@ -35,8 +35,8 @@
     <style>
         /* ===== УНИКАЛЬНЫЕ СТИЛИ index.html ===== */
 
-        body { background: #ffffff; }
-        html.dark body { background: #0f1a2b; }
+        body { background: #f7f5ef; }
+        html.dark body { background: #102537; }
 
         /* ===== HERO: ВИДЕОФОН + ЛЕВОЕ ВЫРАВНИВАНИЕ =====
            ВАЖНО: navbar теперь имеет фиксированную высоту (--navbar-height)
@@ -56,7 +56,13 @@
             object-fit: cover;
             z-index: 0;
         }
-        .hero::after { content: none !important; display: none !important; }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(90deg, rgba(9, 25, 43, .72) 0%, rgba(9, 25, 43, .34) 58%, rgba(9, 25, 43, .08) 100%), linear-gradient(0deg, rgba(9, 25, 43, .26), transparent 48%);
+        }
         .hero-content {
             position: relative;
             z-index: 2;
@@ -71,17 +77,6 @@
             text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.6);
             line-height: 1.1;
         }
-        .hero-title .brand-zagran {
-            color: #4a9fd4 !important;
-            -webkit-text-fill-color: #4a9fd4 !important;
-        }
-        .hero-title .brand-travel {
-            color: #ffffff !important;
-            -webkit-text-fill-color: #ffffff !important;
-        }
-        html.dark .hero-title .brand-zagran { color: #8ac4e4 !important; -webkit-text-fill-color: #8ac4e4 !important; }
-        html.dark .hero-title .brand-travel { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
-
         .hero-subtitle {
             color: rgba(255, 255, 255, 0.98) !important;
             font-size: clamp(1rem, 2vw, 1.25rem) !important;
@@ -97,19 +92,7 @@
             padding: 18px 40px !important;
             font-size: 1rem !important;
         }
-        html:not(.dark) .hero-actions .btn-plan-trip,
-        html:not(.dark) .hero-actions .btn-secondary {
-            color: #ffffff !important;
-            background: rgba(255, 255, 255, 0.15) !important;
-            border: 1px solid rgba(255, 255, 255, 0.35) !important;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-        html:not(.dark) .hero-actions .btn-plan-trip:hover,
-        html:not(.dark) .hero-actions .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.28) !important;
-            color: #ffffff !important;
-        }
+        .hero-actions .btn-primary { background: #80b9d3 !important; box-shadow: none !important; }
         @media (max-width: 768px) {
             .hero {
                 min-height: 88vh !important;
@@ -130,13 +113,11 @@
 
         /* ===== СЕКЦИИ — РАЗДЕЛЕНИЕ ===== */
         #programs, #categories, #services, #inclusions, #faq, #contact {
-            padding-top: var(--section-spacing) !important;
-            padding-bottom: var(--section-spacing) !important;
+            padding-top: clamp(40px, 6vw, 64px) !important;
+            padding-bottom: clamp(40px, 6vw, 64px) !important;
         }
-        #programs { padding-top: 0 !important; }
-        #categories, #services, #inclusions, #faq {
-            margin-top: var(--section-spacing) !important;
-        }
+        #programs { padding-top: 24px !important; }
+        #categories, #services, #inclusions, #faq { margin-top: 0 !important; }
 
         /* ===== АДАПТИВ ===== */
         @media (max-width: 1024px) {
@@ -241,23 +222,19 @@
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-background">
-            <video
-                src="https://res.cloudinary.com/rmytndxw/video/upload/v1786644891/about.mp4"
-                autoplay
-                muted
-                playsinline
-                webkit-playsinline
-                preload="metadata"
-                class="hero-video"
-                id="heroVideo"
-            ></video>
+            <img
+                src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776599/Shymbulak_Ski_Resort_nk1dh1.jpg"
+                alt="Горные вершины Шымбулака рядом с Алматы"
+                class="hero-image"
+                fetchpriority="high"
+            />
         </div>
 
         <div class="container hero-content">
             <h1 class="hero-title">
-                <span class="brand-zagran">Zagran</span><span class="brand-travel">Travel</span>
+                <span data-en="Discover Kazakhstan for real" data-ru="Откройте Казахстан по-настоящему">Откройте Казахстан по-настоящему</span>
             </h1>
-            <p class="hero-subtitle" data-en="author's journeys through Almaty and the most beautiful places of Kazakhstan with personal escort" data-ru="авторские путешествия по Алматы и самым красивым местам Казахстана с персональным сопровождением">
+            <p class="hero-subtitle" data-en="Bespoke journeys through Almaty and Kazakhstan’s most beautiful places, with personal care at every step." data-ru="Авторские путешествия по Алматы и самым красивым местам Казахстана с персональным сопровождением.">
                 Авторские путешествия по Алматы и самым красивым местам Казахстана с персональным сопровождением
             </p>
             <div class="hero-actions">
@@ -265,7 +242,6 @@
                     <span data-en="Find Your Journey" data-ru="Подобрать путешествие">Подобрать путешествие</span>
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
-                <button class="btn btn-secondary btn-plan-trip" onclick="openModal()" data-en="Get in Touch" data-ru="Связаться">Связаться</button>
             </div>
         </div>
     </section>
@@ -294,7 +270,7 @@
                     />
                     <div class="tour-card-title-block">
                         <div class="tour-name">EXPRESS TOUR</div>
-                        <div class="tour-duration" data-en="5 days · 4 nights · 3 excursion days" data-ru="5 дней · 4 ночи · 3 дня экскурсий">5 дней · 4 ночи · 3 дня экскурсий</div>
+                        <div class="tour-duration" data-en="5 days · 4 nights" data-ru="5 дней · 4 ночи">5 дней · 4 ночи</div>
                     </div>
                 </div>
                 <div class="tour-card-body">
@@ -304,9 +280,16 @@
                         <span data-en="Shymbulak · Kok-Tobe · Talgar · Almaty" data-ru="Шымбулак · Кок-Тобе · Талгар · Алматы">Шымбулак · Кок-Тобе · Талгар · Алматы</span>
                     </div>
 
+                    <div class="tour-card-footer">
+                        <div class="tour-card-price">
+                            From $690
+                            <small data-en="per person" data-ru="за человека">за человека</small>
+                        </div>
+                        <button class="btn btn-primary" onclick="openModal()" data-en="Book Now" data-ru="Забронировать">Забронировать</button>
+                    </div>
                     <details class="tour-program-details">
                         <summary>
-                            <span data-en="View program" data-ru="Смотреть программу">Смотреть программу</span>
+                            <span data-en="View full program" data-ru="Смотреть программу">Смотреть программу</span>
                             <span class="material-symbols-outlined">expand_more</span>
                         </summary>
                         <div class="tour-program-list">
@@ -317,14 +300,6 @@
                             <div class="tour-program-day"><span class="day-num">Day 5</span><span class="day-txt" data-en="Transfer to airport — departure." data-ru="Трансфер в аэропорт — вылет.">Трансфер в аэропорт — вылет.</span></div>
                         </div>
                     </details>
-
-                    <div class="tour-card-footer">
-                        <div class="tour-card-price">
-                            From $690
-                            <small data-en="per person" data-ru="за человека">за человека</small>
-                        </div>
-                        <button class="btn btn-primary" onclick="openModal()" data-en="Book Now" data-ru="Забронировать">Забронировать</button>
-                    </div>
                 </div>
             </article>
 
@@ -339,7 +314,7 @@
                     />
                     <div class="tour-card-title-block">
                         <div class="tour-name">PREMIUM TOUR</div>
-                        <div class="tour-duration" data-en="9 days · 8 nights · 7 excursion days" data-ru="9 дней · 8 ночей · 7 дней экскурсий">9 дней · 8 ночей · 7 дней экскурсий</div>
+                        <div class="tour-duration" data-en="9 days · 8 nights" data-ru="9 дней · 8 ночей">9 дней · 8 ночей</div>
                     </div>
                 </div>
                 <div class="tour-card-body">
@@ -349,9 +324,16 @@
                         <span data-en="Charyn · Kolsay · Kaindy · Almarasan · Talgar · Almaty" data-ru="Чарын · Кольсай · Каинды · Алмарасан · Талгар · Алматы">Чарын · Кольсай · Каинды · Алмарасан · Талгар · Алматы</span>
                     </div>
 
+                    <div class="tour-card-footer">
+                        <div class="tour-card-price">
+                            From $1,290
+                            <small data-en="per person" data-ru="за человека">за человека</small>
+                        </div>
+                        <button class="btn btn-primary" onclick="openModal()" data-en="Book Now" data-ru="Забронировать">Забронировать</button>
+                    </div>
                     <details class="tour-program-details">
                         <summary>
-                            <span data-en="View program" data-ru="Смотреть программу">Смотреть программу</span>
+                            <span data-en="View full program" data-ru="Смотреть программу">Смотреть программу</span>
                             <span class="material-symbols-outlined">expand_more</span>
                         </summary>
                         <div class="tour-program-list">
@@ -366,15 +348,32 @@
                             <div class="tour-program-day"><span class="day-num">Day 9</span><span class="day-txt" data-en="Transfer to airport — departure." data-ru="Трансфер в аэропорт — вылет.">Трансфер в аэропорт — вылет.</span></div>
                         </div>
                     </details>
-
-                    <div class="tour-card-footer">
-                        <div class="tour-card-price">
-                            From $1,290
-                            <small data-en="per person" data-ru="за человека">за человека</small>
-                        </div>
-                        <button class="btn btn-primary" onclick="openModal()" data-en="Book Now" data-ru="Забронировать">Забронировать</button>
-                    </div>
                 </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- KAZAKHSTAN DESTINATIONS -->
+    <section class="destination-section container" aria-labelledby="destinationTitle">
+        <div class="destination-heading">
+            <div>
+                <span class="section-tag" data-en="The landscapes" data-ru="Места, ради которых едут">Места, ради которых едут</span>
+                <h2 class="section-title" id="destinationTitle" data-en="Kazakhstan, up close" data-ru="Казахстан — ближе">Казахстан — ближе</h2>
+            </div>
+            <p class="section-description" data-en="Alpine lakes, red canyons and mountain air — a journey worth remembering." data-ru="Горные озёра, красные каньоны и чистый воздух — путешествие, которое запомнится.">Горные озёра, красные каньоны и чистый воздух — путешествие, которое запомнится.</p>
+        </div>
+        <div class="destination-grid">
+            <article class="destination-card destination-card-large">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kolsai_Kaindy_Lakes_qubkus.jpg" alt="Бирюзовое горное озеро Кольсай" loading="lazy" />
+                <div class="destination-caption"><span data-en="Mountain lakes" data-ru="Горные озёра">Горные озёра</span><strong data-en="Kolsay &amp; Kaindy" data-ru="Кольсай и Каинды">Кольсай и Каинды</strong></div>
+            </article>
+            <article class="destination-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Charyn_Canyon_mc3l6f.jpg" alt="Скалы Чарынского каньона" loading="lazy" />
+                <div class="destination-caption"><span data-en="The Valley of Castles" data-ru="Долина замков">Долина замков</span><strong data-en="Charyn Canyon" data-ru="Чарынский каньон">Чарынский каньон</strong></div>
+            </article>
+            <article class="destination-card">
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776595/Kok-Tobe_hill_chrk65.jpg" alt="Панорама Алматы с Кок-Тобе" loading="lazy" />
+                <div class="destination-caption"><span data-en="City &amp; mountains" data-ru="Город и горы">Город и горы</span><strong data-en="Almaty from above" data-ru="Алматы с высоты">Алматы с высоты</strong></div>
             </article>
         </div>
     </section>
@@ -410,10 +409,10 @@
                         Комфорт для деловых поездок, семей и корпоративных клиентов.
                     </p>
                     <ul class="tier-card-features">
-                        <li><span class="material-symbols-outlined">directions_car</span><span data-en="Private transfer" data-ru="Private transfer">Private transfer</span></li>
+                        <li><span class="material-symbols-outlined">directions_car</span><span data-en="Private transfer" data-ru="Персональный трансфер">Персональный трансфер</span></li>
                         <li><span class="material-symbols-outlined">person</span><span data-en="Personal guide" data-ru="Персональный гид">Персональный гид</span></li>
                         <li><span class="material-symbols-outlined">tune</span><span data-en="Flexible itinerary" data-ru="Гибкий маршрут">Гибкий маршрут</span></li>
-                        <li><span class="material-symbols-outlined">apartment</span><span data-en="Business-class hotels (Hilton, DoubleTree, Novotel)" data-ru="Отели бизнес-класса (Hilton, DoubleTree, Novotel)">Отели бизнес-класса (Hilton, DoubleTree, Novotel)</span></li>
+                        <li><span class="material-symbols-outlined">apartment</span><span data-en="Business-class hotel" data-ru="Отель бизнес-класса">Отель бизнес-класса</span></li>
                     </ul>
                     <button class="btn btn-outline" onclick="openModal()" data-en="Learn More" data-ru="Подробнее">Подробнее</button>
                 </div>
@@ -437,7 +436,7 @@
                         Индивидуальное путешествие для гостей, которым важен максимальный комфорт
                     </p>
                     <ul class="tier-card-features">
-                        <li><span class="material-symbols-outlined">star</span><span data-en="Ritz-Carlton, Rahat Palace, Royal Tulip" data-ru="Ritz-Carlton, Rahat Palace, Royal Tulip">Ritz-Carlton, Rahat Palace, Royal Tulip</span></li>
+                        <li><span class="material-symbols-outlined">star</span><span data-en="Premium-class hotel" data-ru="Премиальный отель">Премиальный отель</span></li>
                         <li><span class="material-symbols-outlined">directions_car</span><span data-en="Premium-class cars &amp; VIP transfer" data-ru="Автомобили премиум-класса и VIP-трансфер">Автомобили премиум-класса и VIP-трансфер</span></li>
                         <li><span class="material-symbols-outlined">photo_camera</span><span data-en="Private photographer &amp; video" data-ru="Личный фотограф и видеосъёмка">Личный фотограф и видеосъёмка</span></li>
                         <li><span class="material-symbols-outlined">flight_takeoff</span><span data-en="Helicopter tours &amp; exclusive experiences" data-ru="Вертолётные экскурсии и эксклюзивный опыт">Вертолётные экскурсии и эксклюзивный опыт</span></li>
@@ -462,28 +461,28 @@
 
         <div class="photo-services-grid">
             <div class="photo-service-card tilt-card" onclick="openModal()">
-                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784778147/Kasteev_Museum_wryoco.jpg" alt="Конные прогулки" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=900&q=85" alt="Конная прогулка среди горных пейзажей Казахстана" loading="lazy" />
                 <div class="service-label">
                     <span class="material-symbols-outlined">pets</span>
                     <span data-en="Horseback Riding" data-ru="Конные прогулки">Конные прогулки</span>
                 </div>
             </div>
             <div class="photo-service-card tilt-card" onclick="openModal()">
-                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Terrenkur_Walking_Trail_onifbt.jpg" alt="Индивидуальная фотосессия" loading="lazy" />
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776590/Charyn_Canyon_mc3l6f.jpg" alt="Фотосессия на фоне Чарынского каньона" loading="lazy" />
                 <div class="service-label">
                     <span class="material-symbols-outlined">photo_camera</span>
                     <span data-en="Private Photo Session" data-ru="Индивидуальная фотосессия">Индивидуальная фотосессия</span>
                 </div>
             </div>
             <div class="photo-service-card tilt-card" onclick="openModal()">
-                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/Sandyq_ilzk29.jpg" alt="Национальное шоу" loading="lazy" />
+                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776600/Sandyq_ilzk29.jpg" alt="Национальная кухня Казахстана и традиционное гостеприимство" loading="lazy" />
                 <div class="service-label">
                     <span class="material-symbols-outlined">celebration</span>
                     <span data-en="National Show" data-ru="Национальное шоу">Национальное шоу</span>
                 </div>
             </div>
             <div class="photo-service-card tilt-card" onclick="openModal()">
-                <img src="https://res.cloudinary.com/veyagvpj/image/upload/v1784776601/Vista_Sky_Restaurant_bwoikn.jpg" alt="VIP-трансфер" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85" alt="Автомобиль для комфортного VIP-трансфера" loading="lazy" />
                 <div class="service-label">
                     <span class="material-symbols-outlined">directions_car</span>
                     <span data-en="VIP Transfer" data-ru="VIP-трансфер">VIP-трансфер</span>
@@ -600,8 +599,8 @@
                 <h2 class="section-title" data-en="Ready to Explore" data-ru="Готовы исследовать">
                     Готовы исследовать <span style="color: #ffffff;" data-en="Kazakhstan?" data-ru="Казахстан?">Казахстан?</span>
                 </h2>
-                <p class="section-description" data-en="We'll craft your perfect journey and take care of every detail" data-ru="Мы создадим ваше идеальное путешествие и позаботимся о каждой детали">
-                    Мы создадим ваше идеальное путешествие и позаботимся о каждой детали
+                <p class="section-description" data-en="A personal itinerary, thoughtful service and the best of Kazakhstan — all arranged for you." data-ru="Подберём маршрут и позаботимся о главном — вам останется наслаждаться поездкой.">
+                    Подберём маршрут и позаботимся о главном — вам останется наслаждаться поездкой.
                 </p>
             </div>
             <div class="cta-actions">
