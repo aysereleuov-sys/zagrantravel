@@ -2648,11 +2648,64 @@ html.dark .hero-subtitle { color: #fff !important; }
 .tour-card-footer .btn,
 .tier-card-body .btn,
 .hero-actions .btn-primary { border-radius: 6px; }
-.btn-whatsapp,
-.footer-whatsapp { background: var(--primary-container); color: #fff; }
-.btn-whatsapp:hover,
-.footer-whatsapp:hover { background: #244d69; color: #fff; box-shadow: none; }
-.footer-whatsapp { padding: 0 12px; border-radius: 4px; }
+.hero-actions .btn-primary,
+html.dark .hero-actions .btn-primary {
+    background: #173b54;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(10, 31, 46, 0.3);
+}
+.hero-actions .btn-plan-trip {
+    background: #fff;
+    color: #173b54;
+    border: 2px solid #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(10, 31, 46, 0.2);
+}
+.btn-whatsapp {
+    background: #0f7a3d;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(15, 122, 61, 0.35);
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.footer-whatsapp {
+    background: #0f7a3d;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+@media (hover: hover) {
+    .hero-actions .btn-primary:hover,
+    html.dark .hero-actions .btn-primary:hover {
+        background: #244d69;
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(10, 31, 46, 0.4);
+    }
+    .hero-actions .btn-plan-trip:hover {
+        background: #f1f5f7;
+        color: #173b54;
+        border-color: #f1f5f7;
+        box-shadow: 0 8px 24px rgba(10, 31, 46, 0.3);
+    }
+    .btn-whatsapp:hover,
+    .footer-whatsapp:hover {
+        background: #0a6030;
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(15, 122, 61, 0.42);
+    }
+    .footer-whatsapp:hover { transform: translateY(-1px); }
+}
+.btn-whatsapp:focus-visible,
+.footer-whatsapp:focus-visible,
+.hero-actions .btn-plan-trip:focus-visible {
+    outline: 3px solid #173b54;
+    outline-offset: 3px;
+}
+.btn-whatsapp:focus-visible,
+.footer-whatsapp:focus-visible {
+    outline-color: #0f713c;
+}
 .inc-card.included .inc-card-title,
 .inc-card.included .inc-card-title .material-symbols-outlined,
 .inc-card.included li .material-symbols-outlined,
